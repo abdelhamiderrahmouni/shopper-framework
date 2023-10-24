@@ -30,7 +30,7 @@
     "popper.js": "^1.16.0",
     "postcss": "^8.4.5",
     "prettier": "^2.3.1",
-    "prettier-standard": "^16.4.1",
-    "resolve-url-loader": "^2.3.1"
+    "prettier-standard": "^15.0.1",
+    "resolve-url-loader": "^5.0.0"
   }
 }
