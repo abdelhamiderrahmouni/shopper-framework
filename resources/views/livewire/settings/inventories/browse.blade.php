@@ -102,5 +102,4 @@
         </div>
     </div>
 
-    <x-shopper::learn-more :name="__('shopper::words.location')" link="locations" />
 </div>

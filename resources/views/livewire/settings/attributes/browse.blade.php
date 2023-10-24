@@ -112,6 +112,4 @@
         </div>
     @endif
 
-    <x-shopper::learn-more :name="__('shopper::words.attributes')" link="attributes" />
-
 </div>

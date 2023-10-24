@@ -177,6 +177,4 @@
         </div>
     @endif
 
-    <x-shopper::learn-more :name="__('shopper::layout.sidebar.customers')" link="customers" />
-
 </div>

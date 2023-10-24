@@ -118,6 +118,4 @@
         </div>
     @endif
 
-    <x-shopper::learn-more :name="__('shopper::layout.sidebar.categories')" link="categories" />
-
 </div>

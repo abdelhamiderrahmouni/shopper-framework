@@ -370,6 +370,4 @@
         </div>
     @endif
 
-    <x-shopper::learn-more :name="__('shopper::layout.sidebar.reviews')" link="reviews" />
-
 </div>

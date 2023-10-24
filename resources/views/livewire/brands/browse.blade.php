@@ -135,6 +135,4 @@
         </div>
     @endif
 
-    <x-shopper::learn-more :name="__('shopper::layout.sidebar.brands')" link="brands" />
-
 </div>

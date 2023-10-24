@@ -74,7 +74,6 @@
             </div>
         </div>
 
-        <x-shopper::learn-more :name="__('shopper::pages/settings.legal.title')" link="legal" />
     </div>
 
 </x-shopper::layouts.setting>
