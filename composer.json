@@ -1,6 +1,6 @@
 {
-  "name": "shopper/framework",
-  "description": "An eCommerce administration built with Laravel for create and manage online shop.",
+  "name": "abdelhamiderrahmouni/shopper-framework",
+  "description": "A fork of shopperlabs/shopper: An eCommerce administration built with Laravel for create and manage online shop.",
   "keywords": [
     "laravel",
     "livewire components",
@@ -14,6 +14,12 @@
       "name": "Arthur Monney",
       "email": "monneylobe@gmail.com",
       "homepage": "https://twitter.com/MonneyArthur",
+      "role": "Developer"
+    },
+    {
+      "name": "Abdelhamid Errahmouni",
+      "email": "abdelhamid.errahmouni@gmail.com",
+      "homepage": "https://github.com/abdelhamiderrahmouni",
       "role": "Developer"
     }
   ],
