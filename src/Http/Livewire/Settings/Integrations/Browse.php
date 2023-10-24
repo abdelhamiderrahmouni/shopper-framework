@@ -6,9 +6,10 @@ namespace Shopper\Framework\Http\Livewire\Settings\Integrations;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Artisan;
-use function in_array;
 use Livewire\Component;
 use Shopper\Framework\Models\Shop\Channel;
+
+use function in_array;
 
 class Browse extends Component
 {

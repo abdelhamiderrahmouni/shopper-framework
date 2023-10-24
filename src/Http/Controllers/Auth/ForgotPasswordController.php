@@ -15,8 +15,8 @@ use Illuminate\Routing\Controller;
 
 class ForgotPasswordController extends Controller
 {
-    use ValidatesRequests;
     use SendsPasswordResetEmails;
+    use ValidatesRequests;
 
     public function __construct()
     {

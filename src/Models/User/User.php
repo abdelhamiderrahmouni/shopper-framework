@@ -19,9 +19,9 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     use CanHaveDiscount;
-    use HasRoles;
     use HasFactory;
     use HasProfilePhoto;
+    use HasRoles;
     use Notifiable;
     use SoftDeletes;
     use TwoFactorAuthenticatable;

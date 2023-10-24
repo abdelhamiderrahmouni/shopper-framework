@@ -17,9 +17,9 @@ use Shopper\Framework\Traits\WithUploadProcess;
 
 class Variant extends Component
 {
+    use WithAttributes;
     use WithFileUploads;
     use WithUploadProcess;
-    use WithAttributes;
 
     public Model $product;
 

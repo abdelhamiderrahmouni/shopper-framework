@@ -260,7 +260,7 @@ abstract class BaseRepository implements RepositoryContract
             $this->query->orderBy($orders['column'], $orders['direction']);
         }
 
-        if (isset($this->take) && null !== $this->take) {
+        if (isset($this->take) && $this->take !== null) {
             $this->query->take($this->take);
         }
 

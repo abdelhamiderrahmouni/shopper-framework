@@ -15,8 +15,8 @@ use Shopper\Framework\Shopper;
 
 class ResetPasswordController extends Controller
 {
-    use ValidatesRequests;
     use ResetsPasswords;
+    use ValidatesRequests;
 
     public function __construct()
     {

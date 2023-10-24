@@ -18,8 +18,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 class Category extends Model implements HasMedia
 {
     use HasFactory;
-    use HasSlug;
     use HasRecursiveRelationships;
+    use HasSlug;
     use InteractsWithMedia;
 
     /**

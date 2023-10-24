@@ -14,9 +14,9 @@ use Shopper\Framework\Models\User\User;
 
 class Create extends AbstractBaseComponent
 {
-    use WithDiscountAttributes;
-    use WithDiscountActions;
     use HasPrice;
+    use WithDiscountActions;
+    use WithDiscountAttributes;
 
     protected $listeners = ['addSelectedProducts', 'addSelectedCustomers'];
 

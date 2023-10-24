@@ -20,8 +20,8 @@ use Shopper\Framework\Traits\WithSeoAttributes;
 class Create extends AbstractBaseComponent
 {
     use WithAttributes;
-    use WithSeoAttributes;
     use WithChoicesBrands;
+    use WithSeoAttributes;
 
     public ?Channel $defaultChannel = null;
 

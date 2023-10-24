@@ -18,9 +18,9 @@ use Shopper\Framework\Traits\WithUploadProcess;
 
 class Variants extends Component
 {
-    use WithPagination;
-    use WithFileUploads;
     use WithAttributes;
+    use WithFileUploads;
+    use WithPagination;
     use WithUploadProcess;
 
     public string $search = '';

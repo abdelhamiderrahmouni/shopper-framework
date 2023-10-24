@@ -19,8 +19,8 @@ use Shopper\Framework\Traits\WithStock;
 
 class Inventory extends Component
 {
-    use WithPagination;
     use WithAttributes;
+    use WithPagination;
     use WithStock;
 
     public Model $product;

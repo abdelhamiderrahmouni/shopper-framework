@@ -24,8 +24,8 @@ class Edit extends AbstractBaseComponent
     use WithAttributes;
     use WithChoicesBrands;
     use WithFileUploads;
-    use WithUploadProcess;
     use WithSeoAttributes;
+    use WithUploadProcess;
 
     public Model $product;
 

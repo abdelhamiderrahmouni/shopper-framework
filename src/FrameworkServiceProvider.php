@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Shopper\Framework;
 
+use const LC_TIME;
+
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
-use const LC_TIME;
 use Maatwebsite\Sidebar\Middleware\ResolveSidebars;
 use Shopper\Framework\Contracts\FailedTwoFactorLoginResponse as FailedTwoFactorLoginResponseContract;
 use Shopper\Framework\Contracts\TwoFactorAuthenticationProvider as TwoFactorAuthenticationProviderContract;

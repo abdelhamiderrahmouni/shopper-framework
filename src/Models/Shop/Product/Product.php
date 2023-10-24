@@ -30,8 +30,8 @@ class Product extends Model implements HasMedia, ReviewRateable
     use HasFactory;
     use HasPrice;
     use HasRecursiveRelationships;
-    use HasStock;
     use HasSlug;
+    use HasStock;
     use InteractsWithMedia;
     use ReviewRateableTrait;
 

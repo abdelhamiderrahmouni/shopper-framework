@@ -4,22 +4,24 @@ declare(strict_types=1);
 
 namespace Shopper\Framework\Services;
 
+use const PHP_VERSION;
+
 use ErrorException;
 use Exception;
 use Illuminate\Mail\Markdown;
 use Illuminate\Support\Facades\View;
-use function is_object;
-use const PHP_VERSION;
 use ReeceM\Mocker\Mocked;
 use ReflectionType;
 use Shopper\Framework\Traits\Mails\Mailables;
 use Shopper\Framework\Traits\Mails\Templates;
 use Throwable;
 
+use function is_object;
+
 class Mailable
 {
-    use Templates;
     use Mailables;
+    use Templates;
 
     /**
      * Default type examples for being passed to reflected classes.
@@ -106,11 +108,11 @@ class Mailable
         $reflection = collect($params)->where('name', $arg)->first()->getType();
 
         if (version_compare(PHP_VERSION, '7.1', '>=')) {
-            $type = null !== $reflection
+            $type = $reflection !== null
                 ? self::TYPES[$reflection->getName()]
                 : null;
         } else {
-            $type = null !== $reflection
+            $type = $reflection !== null
                 ? self::TYPES[
                     // @scrutinizer ignore-deprecated
                     $reflection->__toString()
@@ -119,7 +121,7 @@ class Mailable
         }
 
         try {
-            return null !== $type
+            return $type !== null
                 ? $type
                 : new Mocked($arg, \ReeceM\Mocker\Utils\VarStore::singleton());
         } catch (Exception $e) {

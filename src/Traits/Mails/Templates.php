@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Shopper\Framework\Traits\Mails;
 
-use function dirname;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
+
+use function dirname;
 
 trait Templates
 {
@@ -32,7 +33,7 @@ trait Templates
         $template = self::getTemplates()
             ->where('template_slug', $templateSlug)->first();
 
-        if (null !== $template) {
+        if ($template !== null) {
             self::saveTemplates(self::getTemplates()->reject(fn ($value) => $value->template_slug === $template->template_slug));
 
             $template_view = 'shopper::mails.templates.' . $templateSlug;
@@ -123,7 +124,7 @@ trait Templates
         $template = self::getTemplates()
             ->where('template_slug', $templateSlug)->first();
 
-        if (null !== $template) {
+        if ($template !== null) {
             $template_view = 'templates.' . $template->template_slug;
             $template_plaintext_view = $template_view . '_plain_text';
 
@@ -249,7 +250,7 @@ trait Templates
             if ($template) {
                 $instance = null;
             } else {
-                if (null !== self::handleMailableViewDataArgs($namespace)) {
+                if (self::handleMailableViewDataArgs($namespace) !== null) {
                     $instance = self::handleMailableViewDataArgs($namespace);
                 } else {
                     $instance = new $namespace();
@@ -290,8 +291,8 @@ trait Templates
             ])
             ->all();
 
-        $templateExists = null !== $templateData['view_path'];
-        $textTemplateExists = null !== $templateData['text_view_path'];
+        $templateExists = $templateData['view_path'] !== null;
+        $textTemplateExists = $templateData['text_view_path'] !== null;
 
         if ($templateExists) {
             return collect($templateData)->union([
@@ -299,8 +300,8 @@ trait Templates
                 'text_template' => $textTemplateExists ? file_get_contents($templateData['text_view_path']) : null,
                 'template' => file_get_contents($templateData['view_path']),
                 'markdowned_template' => self::markdownedTemplate($templateData['view_path']),
-                'template_name' => null !== $templateData['markdown'] ? $templateData['markdown'] : $templateData['data']->view,
-                'is_markdown' => null !== $templateData['markdown'] ? true : false,
+                'template_name' => $templateData['markdown'] !== null ? $templateData['markdown'] : $templateData['data']->view,
+                'is_markdown' => $templateData['markdown'] !== null ? true : false,
 
             ])->all();
         }

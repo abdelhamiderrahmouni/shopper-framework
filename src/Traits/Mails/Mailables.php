@@ -4,21 +4,23 @@ declare(strict_types=1);
 
 namespace Shopper\Framework\Traits\Mails;
 
+use const T_CLASS;
+use const T_NAMESPACE;
+use const T_STRING;
+use const T_WHITESPACE;
+
 use Illuminate\Container\Container;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
-use function is_array;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionProperty;
 use RegexIterator;
-use const T_CLASS;
-use const T_NAMESPACE;
-use const T_STRING;
-use const T_WHITESPACE;
+
+use function is_array;
 
 trait Mailables
 {
@@ -35,7 +37,7 @@ trait Mailables
     public static function buildMailable($instance, $type = 'call')
     {
         if ($type === 'call') {
-            if (null !== self::handleMailableViewDataArgs($instance)) {
+            if (self::handleMailableViewDataArgs($instance) !== null) {
                 return Container::getInstance()->call([self::handleMailableViewDataArgs($instance), 'build']);
             }
 
@@ -145,7 +147,7 @@ trait Mailables
 
                     $mailable_data = self::buildMailable($mailableClass);
 
-                    if (null !== self::handleMailableViewDataArgs($mailableClass)) {
+                    if (self::handleMailableViewDataArgs($mailableClass) !== null) {
                         $mailable_view_data = self::getMailableViewData(self::handleMailableViewDataArgs($mailableClass), $mailable_data);
                     } else {
                         $mailable_view_data = self::getMailableViewData(new $mailableClass(), $mailable_data);
@@ -165,16 +167,16 @@ trait Mailables
                     $fqcns[$i]['view_path'] = null;
                     $fqcns[$i]['text_view_path'] = null;
 
-                    if (null !== $fqcns[$i]['markdown'] && View::exists($fqcns[$i]['markdown'])) {
+                    if ($fqcns[$i]['markdown'] !== null && View::exists($fqcns[$i]['markdown'])) {
                         $fqcns[$i]['view_path'] = View($fqcns[$i]['markdown'])->getPath();
                     }
 
-                    if (null !== $fqcns[$i]['data']) {
-                        if (null !== $fqcns[$i]['data']->view && View::exists($fqcns[$i]['data']->view)) {
+                    if ($fqcns[$i]['data'] !== null) {
+                        if ($fqcns[$i]['data']->view !== null && View::exists($fqcns[$i]['data']->view)) {
                             $fqcns[$i]['view_path'] = View($fqcns[$i]['data']->view)->getPath();
                         }
 
-                        if (null !== $fqcns[$i]['data']->textView && View::exists($fqcns[$i]['data']->textView)) {
+                        if ($fqcns[$i]['data']->textView !== null && View::exists($fqcns[$i]['data']->textView)) {
                             $fqcns[$i]['text_view_path'] = View($fqcns[$i]['data']->textView)->getPath();
                             $fqcns[$i]['text_view'] = $fqcns[$i]['data']->textView;
                         }
@@ -271,7 +273,7 @@ trait Mailables
 
         $obj = self::buildMailable($mailable);
 
-        if (null === $obj) {
+        if ($obj === null) {
             $obj = [];
 
             return collect($obj);

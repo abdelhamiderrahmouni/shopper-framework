@@ -18,8 +18,8 @@ use Shopper\Framework\Repositories\UserRepository;
 class Edit extends AbstractBaseComponent
 {
     use HasPrice;
-    use WithDiscountAttributes;
     use WithDiscountActions;
+    use WithDiscountAttributes;
 
     public Discount $discount;
 

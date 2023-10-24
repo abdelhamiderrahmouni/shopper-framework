@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Shopper\Framework\Listeners\Products;
 
-use function count;
 use Shopper\Framework\Events\Products\ProductCreated;
+
+use function count;
 
 class CreateProductSubscriber
 {
