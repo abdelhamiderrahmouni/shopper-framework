@@ -162,12 +162,7 @@ class Order extends Model
     protected function setDefaultOrderStatus(): void
     {
         $this->setRawAttributes(
-            array_merge(
-                $this->attributes,
-                [
-                    'status' => OrderStatus::PENDING,
-                ]
-            ),
+            [...$this->attributes, 'status' => OrderStatus::PENDING],
             true
         );
     }

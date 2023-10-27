@@ -6,15 +6,15 @@ namespace Shopper\Framework\Models\Shop\Order;
 
 class OrderStatus
 {
-    public const PENDING = 'pending';
+    final public const PENDING = 'pending';
 
-    public const REGISTER = 'register';
+    final public const REGISTER = 'register';
 
-    public const PAID = 'paid';
+    final public const PAID = 'paid';
 
-    public const COMPLETED = 'completed';
+    final public const COMPLETED = 'completed';
 
-    public const CANCELLED = 'cancelled';
+    final public const CANCELLED = 'cancelled';
 
     public static function values(): array
     {

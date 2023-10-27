@@ -13,9 +13,9 @@ class Address extends Model
 {
     use HasFactory;
 
-    public const TYPE_BILLING = 'billing';
+    final public const TYPE_BILLING = 'billing';
 
-    public const TYPE_SHIPPING = 'shipping';
+    final public const TYPE_SHIPPING = 'shipping';
 
     /**
      * The attributes that are mass assignable.

@@ -126,7 +126,7 @@ class User extends Authenticatable
         $roles = $this->roles()->pluck('display_name')->toArray();
 
         if (count($roles)) {
-            return implode(', ', array_map(fn ($item) => ucwords($item), $roles));
+            return implode(', ', array_map(fn ($item) => ucwords((string) $item), $roles));
         }
 
         return 'N/A';

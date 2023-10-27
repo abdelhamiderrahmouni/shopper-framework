@@ -23,7 +23,7 @@ class Thanks
         '    <options=bold>https://github.com/sponsors/Sense</>',
     ];
 
-    public function __construct(private OutputInterface $output)
+    public function __construct(private readonly OutputInterface $output)
     {
     }
 

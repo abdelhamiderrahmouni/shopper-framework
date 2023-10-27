@@ -79,15 +79,7 @@ class Create extends AbstractBaseComponent
 
     public function rules(): array
     {
-        return array_merge($this->addressRules(), [
-            'email' => 'required|max:150|unique:' . shopper_table('users'),
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'country_id' => 'required',
-            'street_address' => 'required',
-            'password' => 'required|confirmed|min:8',
-            'phone_number' => ['nullable', new Phone()],
-        ]);
+        return [...$this->addressRules(), 'email' => 'required|max:150|unique:' . shopper_table('users'), 'first_name' => 'required', 'last_name' => 'required', 'country_id' => 'required', 'street_address' => 'required', 'password' => 'required|confirmed|min:8', 'phone_number' => ['nullable', new Phone()]];
     }
 
     public function render(): View

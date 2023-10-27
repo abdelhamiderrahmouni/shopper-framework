@@ -54,12 +54,7 @@ class OrderRefund extends Model
     protected function setDefaultOrderRefundStatus(): void
     {
         $this->setRawAttributes(
-            array_merge(
-                $this->attributes,
-                [
-                    'status' => OrderRefundStatus::PENDING,
-                ]
-            ),
+            [...$this->attributes, 'status' => OrderRefundStatus::PENDING],
             true
         );
     }

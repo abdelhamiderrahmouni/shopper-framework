@@ -70,14 +70,14 @@ trait Templates
             ]);
         }
 
-        if (! preg_match('/^[a-zA-Z0-9-_\\s]+$/', $request->title)) {
+        if (! preg_match('/^[a-zA-Z0-9-_\\s]+$/', (string) $request->title)) {
             return response()->json([
                 'status' => 'failed',
                 'message' => 'Template name not valid',
             ]);
         }
 
-        $templateName = Str::camel(preg_replace('/\s+/', '_', $request->title));
+        $templateName = Str::camel(preg_replace('/\s+/', '_', (string) $request->title));
 
         if (self::getTemplates()->contains('template_slug', '=', $templateName)) {
             return response()->json([
@@ -88,11 +88,7 @@ trait Templates
 
         $oldForm = self::getTemplates()->reject(fn ($value) => $value->template_slug === $template->template_slug);
         $newForm = array_merge($oldForm->toArray(), [
-            array_merge((array) $template, [
-                'template_slug' => $templateName,
-                'template_name' => $request->title,
-                'template_description' => $request->description,
-            ]),
+            [...(array) $template, 'template_slug' => $templateName, 'template_name' => $request->title, 'template_description' => $request->description],
         ]);
 
         self::saveTemplates(collect($newForm));
@@ -103,12 +99,12 @@ trait Templates
         if (View::exists($template_view)) {
             $viewPath = View($template_view)->getPath();
 
-            rename($viewPath, dirname($viewPath) . "/{$templateName}.blade.php");
+            rename($viewPath, dirname((string) $viewPath) . "/{$templateName}.blade.php");
 
             if (View::exists($template_plaintext_view)) {
                 $textViewPath = View($template_plaintext_view)->getPath();
 
-                rename($textViewPath, dirname($viewPath) . "/{$templateName}_plain_text.blade.php");
+                rename($textViewPath, dirname((string) $viewPath) . "/{$templateName}_plain_text.blade.php");
             }
         }
 
@@ -150,7 +146,7 @@ trait Templates
 
     public static function getTemplates(): Collection
     {
-        return collect(json_decode(file_get_contents(self::getTemplatesFile())));
+        return collect(json_decode(file_get_contents(self::getTemplatesFile()), null, 512, JSON_THROW_ON_ERROR));
     }
 
     /**
@@ -158,7 +154,7 @@ trait Templates
      */
     public static function createTemplate(Request $request): ?RedirectResponse
     {
-        if (! preg_match('/^[a-zA-Z0-9-_\\s]+$/', $request->template_name)) {
+        if (! preg_match('/^[a-zA-Z0-9-_\\s]+$/', (string) $request->template_name)) {
             session()->flash('error', __('Template name not valid'));
 
             return null;
@@ -166,7 +162,7 @@ trait Templates
 
         $view = 'shopper::templates.' . $request->template_name;
 
-        $templateName = Str::camel(preg_replace('/\s+/', '_', $request->template_name));
+        $templateName = Str::camel(preg_replace('/\s+/', '_', (string) $request->template_name));
 
         if (! view()->exists($view) && ! self::getTemplates()->contains('template_slug', '=', $templateName)) {
             self::saveTemplates(self::getTemplates()
@@ -300,7 +296,7 @@ trait Templates
                 'text_template' => $textTemplateExists ? file_get_contents($templateData['text_view_path']) : null,
                 'template' => file_get_contents($templateData['view_path']),
                 'markdowned_template' => self::markdownedTemplate($templateData['view_path']),
-                'template_name' => $templateData['markdown'] !== null ? $templateData['markdown'] : $templateData['data']->view,
+                'template_name' => $templateData['markdown'] ?? $templateData['data']->view,
                 'is_markdown' => $templateData['markdown'] !== null ? true : false,
 
             ])->all();
@@ -361,7 +357,7 @@ trait Templates
             ];
         }
 
-        return preg_replace($patterns, $replacements, $content);
+        return preg_replace($patterns, $replacements, (string) $content);
     }
 
     protected static function markdownedTemplate($viewPath): array|string|null

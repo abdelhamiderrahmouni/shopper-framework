@@ -73,7 +73,7 @@ if (! \function_exists('setEnvironmentValue')) {
                 $keyPosition = (int) mb_strpos($str, "{$envKey}=");
                 $endOfLinePosition = (int) mb_strpos($str, "\n", $keyPosition);
                 $oldLine = mb_substr($str, $keyPosition, $endOfLinePosition - $keyPosition);
-                $space = mb_strpos($value, ' ');
+                $space = mb_strpos((string) $value, ' ');
                 $envValue = $space === false ? $value : '"' . $value . '"';
 
                 // If key does not exist, add it

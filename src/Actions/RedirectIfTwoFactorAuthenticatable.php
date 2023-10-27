@@ -44,7 +44,7 @@ final class RedirectIfTwoFactorAuthenticatable
         });
     }
 
-    protected function throwFailedAuthenticationException(Request $request): void
+    protected function throwFailedAuthenticationException(Request $request): never
     {
         $this->limiter->increment($request);
 

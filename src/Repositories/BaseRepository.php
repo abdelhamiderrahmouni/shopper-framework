@@ -16,7 +16,7 @@ abstract class BaseRepository implements RepositoryContract
 
     protected Builder $query;
 
-    protected ?int $take;
+    protected ?int $take = null;
 
     protected array $with = [];
 

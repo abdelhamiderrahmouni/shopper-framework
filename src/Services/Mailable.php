@@ -26,7 +26,7 @@ class Mailable
     /**
      * Default type examples for being passed to reflected classes.
      */
-    public const TYPES = [
+    final public const TYPES = [
         'int' => 31,
         'string' => null,
         'bool' => false,
@@ -69,7 +69,7 @@ class Mailable
 
             $_md = self::buildMailable(Markdown::class, 'make');
 
-            return htmlspecialchars_decode($_md->render($_view, $_data));
+            return htmlspecialchars_decode((string) $_md->render($_view, $_data));
         } catch (ErrorException $e) {
             $error = '<div class="alert alert-warning">
 	    	<h5 class="alert-heading">Error:</h5>
@@ -121,10 +121,8 @@ class Mailable
         }
 
         try {
-            return $type !== null
-                ? $type
-                : new Mocked($arg, \ReeceM\Mocker\Utils\VarStore::singleton());
-        } catch (Exception $e) {
+            return $type ?? new Mocked($arg, \ReeceM\Mocker\Utils\VarStore::singleton());
+        } catch (Exception) {
             return $arg;
         }
     }

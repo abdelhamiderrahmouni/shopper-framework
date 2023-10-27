@@ -25,7 +25,7 @@ class UpdatePaymentMethod extends ModalComponent
 
     public ?string $instructions = null;
 
-    public ?string $logoUrl;
+    public ?string $logoUrl = null;
 
     public $logo;
 

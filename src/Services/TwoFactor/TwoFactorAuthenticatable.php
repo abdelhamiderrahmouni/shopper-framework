@@ -20,7 +20,7 @@ trait TwoFactorAuthenticatable
      */
     public function recoveryCodes(): array
     {
-        return json_decode(decrypt($this->two_factor_recovery_codes), true);
+        return json_decode((string) decrypt($this->two_factor_recovery_codes), true, 512, JSON_THROW_ON_ERROR);
     }
 
     /**
@@ -32,7 +32,7 @@ trait TwoFactorAuthenticatable
             'two_factor_recovery_codes' => encrypt(str_replace(
                 $code,
                 RecoveryCode::generate(),
-                decrypt($this->two_factor_recovery_codes)
+                (string) decrypt($this->two_factor_recovery_codes)
             )),
         ])->save();
     }

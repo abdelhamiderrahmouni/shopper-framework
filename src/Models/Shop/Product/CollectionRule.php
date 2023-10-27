@@ -61,7 +61,7 @@ class CollectionRule extends Model
     public function getFormattedValue(): string
     {
         if ($this->rule === 'product_price') {
-            return shopper_money_format(strtoupper($this->value));
+            return shopper_money_format(strtoupper((string) $this->value));
         }
 
         return $this->value;

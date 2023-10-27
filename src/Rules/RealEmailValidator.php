@@ -15,7 +15,7 @@ class RealEmailValidator implements Rule
      */
     public function passes($attribute, $value): bool
     {
-        return (bool) preg_match('/^([a-z0-9\\+_\\-]+)(\\.[a-z0-9\\+_\\-]+)*@([a-z0-9\\-]+\\.)+[a-z]{2,6}$/ix', $value);
+        return (bool) preg_match('/^([a-z0-9\\+_\\-]+)(\\.[a-z0-9\\+_\\-]+)*@([a-z0-9\\-]+\\.)+[a-z]{2,6}$/ix', (string) $value);
     }
 
     public function message(): string
