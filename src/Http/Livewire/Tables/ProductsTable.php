@@ -148,10 +148,10 @@ class ProductsTable extends DataTableComponent
             Views\Column::make(__('shopper::layout.forms.label.price'), 'price_amount')
                 ->sortable()
                 ->searchable()
-                ->format(fn($value) => $value ? '<span class="font-medium text-secondary-500 dark:text-secondary-400">' . shopper_money_format($value) . '</span>' : null)->html(),
+                ->format(fn ($value) => $value ? '<span class="font-medium text-secondary-500 dark:text-secondary-400">' . shopper_money_format($value) . '</span>' : null)->html(),
             Views\Column::make(__('shopper::layout.tables.sku'), 'sku')
                 ->sortable()
-                ->format(fn($value) => $value ? '<span class="font-medium text-secondary-500 dark:text-secondary-400">' . $value . '</span>' : '<span class="inline-flex text-secondary-700 dark:text-secondary-500">&mdash;</span>')->html(),
+                ->format(fn ($value) => $value ? '<span class="font-medium text-secondary-500 dark:text-secondary-400">' . $value . '</span>' : '<span class="inline-flex text-secondary-700 dark:text-secondary-500">&mdash;</span>')->html(),
             Views\Column::make(__('shopper::layout.forms.label.brand'), 'brand.name')
                 ->view('shopper::livewire.tables.cells.products.brand'),
             Views\Column::make(__('shopper::layout.tables.stock'), 'security_stock')
