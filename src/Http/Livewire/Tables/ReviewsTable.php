@@ -137,7 +137,7 @@ class ReviewsTable extends DataTableComponent
         return [
             Views\Column::make(__('shopper::words.product'), 'reviewrateable_id')
                 ->sortable()
-                ->secondaryHeader(fn() => view('shopper::livewire.tables.cells.input-search', [
+                ->secondaryHeader(fn () => view('shopper::livewire.tables.cells.input-search', [
                     'field' => 'name',
                     'columnSearch' => $this->search,
                 ]))

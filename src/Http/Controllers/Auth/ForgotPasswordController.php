@@ -22,7 +22,7 @@ class ForgotPasswordController extends Controller
     {
         $this->middleware('guest');
 
-        ResetPassword::toMailUsing(fn($notifiable, $token) => (new MailMessage())
+        ResetPassword::toMailUsing(fn ($notifiable, $token) => (new MailMessage())
             ->view('shopper::mails.email')
             ->line(__('shopper::pages/auth.email.mail.content'))
             ->action(__('shopper::pages/auth.email.mail.action'), url(config('app.url') . route('shopper.password.reset', $token, false)))

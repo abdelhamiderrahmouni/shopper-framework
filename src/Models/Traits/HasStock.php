@@ -103,7 +103,7 @@ trait HasStock
             'event' => Arr::get($arguments, 'event'),
             'inventory_id' => $inventoryId,
             'user_id' => auth()->id(),
-        ])->when($reference, fn($collection) => $collection
+        ])->when($reference, fn ($collection) => $collection
             ->put('reference_type', $reference->getMorphClass())
             ->put('reference_id', $reference->getKey()))->toArray();
 
