@@ -14,6 +14,7 @@ trait HasPrice
 {
     public function formattedPrice(int|string $price): string
     {
+        $price *= 100; // the amount is already devided by 100 in the model
         $money = new Money($price, new Currency(shopper_currency()));
         $currencies = new ISOCurrencies();
 
