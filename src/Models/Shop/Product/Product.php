@@ -119,12 +119,12 @@ class Product extends Model implements HasMedia, ReviewRateable
     {
         if ($this->parent_id) {
             return $this->price_amount
-                ? $this->formattedPrice($this->price_amount)
-                : ($this->parent->price_amount ? $this->formattedPrice($this->parent->price_amount) : null);
+                ? $this->formattedPrice($this->price_amount * 100)
+                : ($this->parent->price_amount ? $this->formattedPrice($this->parent->price_amount * 100) : null);
         }
 
         return $this->price_amount
-                ? $this->formattedPrice($this->price_amount)
+                ? $this->formattedPrice($this->price_amount * 100)
                 : null;
     }
 
