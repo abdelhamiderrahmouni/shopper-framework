@@ -18,11 +18,11 @@ trait WithAttributes
 
     public ?string $description = null;
 
-    public ?int $price_amount = null;
+    public float|string|null $price_amount = null;
 
-    public ?int $old_price_amount = null;
+    public float|string|null $old_price_amount = null;
 
-    public ?int $cost_amount = null;
+    public float|string|null $cost_amount = null;
 
     public bool $backorder = false;
 
