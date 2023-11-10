@@ -131,6 +131,7 @@ class OrdersTable extends DataTableComponent
     {
         return Order::query()
             ->with(['customer', 'items'])
-            ->withCount('items');
+            ->withCount('items')
+            ->latest();
     }
 }
