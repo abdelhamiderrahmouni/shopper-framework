@@ -36,7 +36,7 @@ class Inventory extends Component
         $this->realStock = $product->stock;
         $this->sku = $product->sku;
         $this->barcode = $product->barcode;
-        $this->securityStock = $product->security_stock;
+        $this->securityStock = (int) $product->security_stock;
     }
 
     public function paginationView(): string
