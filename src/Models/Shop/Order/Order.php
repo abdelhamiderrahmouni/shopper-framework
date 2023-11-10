@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Shopper\Framework\Models\Shop\Discount;
 use Shopper\Framework\Models\Shop\PaymentMethod;
 use Shopper\Framework\Models\Traits\HasPrice;
 use Shopper\Framework\Models\User\Address;
@@ -38,6 +39,12 @@ class Order extends Model
         'payment_method_id',
         'price_amount',
         'user_id',
+        'discount_id',
+        'discount_amount',
+    ];
+
+    protected $casts = [
+        'discount_amount' => 'float'
     ];
 
     /**
@@ -158,12 +165,16 @@ class Order extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
-
     protected function setDefaultOrderStatus(): void
     {
         $this->setRawAttributes(
             [...$this->attributes, 'status' => OrderStatus::PENDING],
             true
         );
+    }
+
+    public function discount(): BelongsTo
+    {
+        return $this->belongsTo(Discount::class);
     }
 }
