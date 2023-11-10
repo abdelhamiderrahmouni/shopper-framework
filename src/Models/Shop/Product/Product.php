@@ -94,7 +94,7 @@ class Product extends Model implements HasMedia, ReviewRateable
     public function oldPriceAmount(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $value / 100,
+            get: fn ($value) => number_format($value / 100, 2, '.', ''),
             set: fn ($value) => $value * 100,
         );
     }
@@ -102,7 +102,7 @@ class Product extends Model implements HasMedia, ReviewRateable
     public function priceAmount(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $value / 100,
+            get: fn ($value) => number_format($value / 100, 2, '.', ''),
             set: fn ($value) => $value * 100,
         );
     }
@@ -110,7 +110,7 @@ class Product extends Model implements HasMedia, ReviewRateable
     public function costAmount(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $value / 100,
+            get: fn ($value) => number_format($value / 100, 2, '.', ''),
             set: fn ($value) => $value * 100,
         );
     }
