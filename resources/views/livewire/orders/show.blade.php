@@ -185,8 +185,8 @@
                 </h3>
                 <div class="mt-4">
                     <div class="py-4 flex">
-                        @if($order->paymentMethod->logo)
-                            <img class="h-10 w-10 rounded-md object-cover" src="{{ $order->paymentMethod->logo_url }}" alt="payment icon" />
+                        @if($order->paymentMethod?->logo)
+                            <img class="h-10 w-10 rounded-md object-cover" src="{{ $order->paymentMethod?->logo_url }}" alt="payment icon" />
                         @else
                             <span class="flex items-center justify-center h-10 w-10 bg-secondary-100 text-secondary-300 rounded-md dark:bg-secondary-800 dark:text-white">
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6">
@@ -196,7 +196,7 @@
                         @endif
                         <div class="ml-4">
                             <p class="text-sm font-medium text-secondary-900 dark:text-white">
-                                {{ $order->paymentMethod->title }}
+                                {{ $order->paymentMethod?->title }}
                             </p>
                             <a href="{{ route('shopper.settings.payments') }}" class="text-sm text-secondary-500 dark:text-secondary-400 hover:text-secondary-400 underline">
                                 {{ __('shopper::words.available_methods') }}

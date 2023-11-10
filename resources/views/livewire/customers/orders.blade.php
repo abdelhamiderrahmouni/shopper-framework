@@ -61,8 +61,8 @@
                         {{ __('shopper::words.payment_method') }}
                     </h5>
                     <div class="mt-2 flex items-center">
-                        @if($order->paymentMethod->logo)
-                            <img class="h-6 w-6 rounded-md object-cover" src="{{ $order->paymentMethod->logo_url }}" alt="payment icon" />
+                        @if($order->paymentMethod?->logo)
+                            <img class="h-6 w-6 rounded-md object-cover" src="{{ $order->paymentMethod?->logo_url }}" alt="payment icon" />
                         @else
                             <span class="flex items-center justify-center h-6 w-6 bg-secondary-100 text-secondary-300 rounded-md dark:bg-secondary-700 dark:text-secondary-400">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -72,7 +72,7 @@
                         @endif
                         <div class="ml-2">
                             <p class="text-sm font-medium text-secondary-500 dark:text-secondary-400">
-                                {{ $order->paymentMethod->title }}
+                                {{ $order->paymentMethod?->title }}
                             </p>
                         </div>
                     </div>
