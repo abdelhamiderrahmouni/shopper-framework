@@ -44,7 +44,7 @@ class Order extends Model
     ];
 
     protected $casts = [
-        'discount_amount' => 'float'
+        'discount_amount' => 'float',
     ];
 
     /**
@@ -165,6 +165,7 @@ class Order extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
+
     protected function setDefaultOrderStatus(): void
     {
         $this->setRawAttributes(
