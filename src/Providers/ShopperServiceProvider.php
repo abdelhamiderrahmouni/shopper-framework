@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Livewire\Component;
 use Livewire\Livewire;
 use Shopper\Framework\Console;
-use Shopper\Framework\Models\Shop\Channel;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -78,7 +77,7 @@ class ShopperServiceProvider extends PackageServiceProvider
             'category' => config('shopper.system.models.category'),
             'collection' => config('shopper.system.models.collection'),
             'product' => config('shopper.system.models.product'),
-            'channel' => Channel::class,
+            'channel' => config('shopper.system.models.channel'),
         ]);
     }
 

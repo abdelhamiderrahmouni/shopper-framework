@@ -10,6 +10,6 @@ class ChannelRepository extends BaseRepository
 {
     public function model(): string
     {
-        return Channel::class;
+        return config('shopper.system.models.channel');
     }
 }
