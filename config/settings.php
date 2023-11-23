@@ -109,6 +109,6 @@ return [
             Shopper\Framework\Events\Handlers\RegisterShopSidebar::class,
             Shopper\Framework\Events\Handlers\RegisterOrderSidebar::class,
         ],
-    ]
+    ],
 
 ];

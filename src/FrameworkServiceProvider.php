@@ -48,7 +48,7 @@ class FrameworkServiceProvider extends ServiceProvider
         $sideBuilder = config('shopper.settings.sidebar.builder');
         $handlers = config('shopper.settings.sidebar.handlers', []);
 
-        foreach ($handlers as $handler){
+        foreach ($handlers as $handler) {
             $this->app['events']->listen($sideBuilder, $handler);
         }
 

@@ -7,7 +7,6 @@ namespace Shopper\Framework\Sidebar;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Maatwebsite\Sidebar\Menu;
 use Maatwebsite\Sidebar\SidebarExtender;
-use Shopper\Framework\Events\BuildingSidebar;
 
 abstract class AbstractAdminSidebar implements SidebarExtender
 {
