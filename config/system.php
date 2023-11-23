@@ -14,6 +14,7 @@ return [
     */
 
     'brand' => null,
+    'app_name' => 'Shopper',
 
     'mapbox_token' => env('MAPBOX_PUBLIC_TOKEN', null),
 
