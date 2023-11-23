@@ -20,7 +20,9 @@ class AdminSidebar implements ShouldCache, Sidebar
 
     public function build(): void
     {
-        event(new BuildingSidebar($this->menu));
+        $sidebarBuilder = config('shopper.settings.sidebar.builder');
+
+        event(new $sidebarBuilder($this->menu));
     }
 
     public function getMenu(): Menu

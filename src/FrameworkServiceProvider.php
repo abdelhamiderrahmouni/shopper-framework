@@ -14,8 +14,6 @@ use Illuminate\Support\ServiceProvider;
 use Maatwebsite\Sidebar\Middleware\ResolveSidebars;
 use Shopper\Framework\Contracts\FailedTwoFactorLoginResponse as FailedTwoFactorLoginResponseContract;
 use Shopper\Framework\Contracts\TwoFactorAuthenticationProvider as TwoFactorAuthenticationProviderContract;
-use Shopper\Framework\Events\BuildingSidebar;
-use Shopper\Framework\Events\Handlers;
 use Shopper\Framework\Http\Composers\GlobalComposer;
 use Shopper\Framework\Http\Composers\SidebarCreator;
 use Shopper\Framework\Http\Middleware;
@@ -47,9 +45,12 @@ class FrameworkServiceProvider extends ServiceProvider
 
     public function register(): void
     {
-        $this->app['events']->listen(BuildingSidebar::class, Handlers\RegisterDashboardSidebar::class);
-        $this->app['events']->listen(BuildingSidebar::class, Handlers\RegisterShopSidebar::class);
-        $this->app['events']->listen(BuildingSidebar::class, Handlers\RegisterOrderSidebar::class);
+        $sideBuilder = config('shopper.settings.sidebar.builder');
+        $handlers = config('shopper.settings.sidebar.handlers', []);
+
+        foreach ($handlers as $handler){
+            $this->app['events']->listen($sideBuilder, $handler);
+        }
 
         $this->app->singleton('shopper', fn () => new Shopper());
         $this->app->singleton(TwoFactorAuthenticationProviderContract::class, TwoFactorAuthenticationProvider::class);

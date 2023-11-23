@@ -100,4 +100,15 @@ return [
             'permission' => null,
         ],
     ],
+
+    'sidebar' => [
+        'builder' => Shopper\Framework\Events\BuildingSidebar::class,
+
+        'handlers' => [
+            Shopper\Framework\Events\Handlers\RegisterDashboardSidebar::class,
+            Shopper\Framework\Events\Handlers\RegisterShopSidebar::class,
+            Shopper\Framework\Events\Handlers\RegisterOrderSidebar::class,
+        ],
+    ]
+
 ];
