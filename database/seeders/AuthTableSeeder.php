@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Database\Seeders;
+namespace Shopper\Framework\Database\Seeders;
 
-use Database\Seeders\Auth\PermissionRoleTableSeeder;
-use Database\Seeders\Auth\PermissionsTableSeeder;
-use Database\Seeders\Auth\RolesTableSeeder;
 use Illuminate\Database\Seeder;
+use Shopper\Framework\Database\Seeders\Auth\PermissionRoleTableSeeder;
+use Shopper\Framework\Database\Seeders\Auth\PermissionsTableSeeder;
+use Shopper\Framework\Database\Seeders\Auth\RolesTableSeeder;
 use Shopper\Framework\Traits\Database\DisableForeignKeys;
 use Shopper\Framework\Traits\Database\TruncateTable;
 

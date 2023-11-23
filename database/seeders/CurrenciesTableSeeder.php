@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Database\Seeders;
+namespace Shopper\Framework\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Shopper\Framework\Models\System\Currency;
