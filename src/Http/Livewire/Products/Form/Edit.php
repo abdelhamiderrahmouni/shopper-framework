@@ -50,7 +50,7 @@ class Edit extends AbstractBaseComponent
         $this->productId = $product->id;
         $this->name = $product->name;
         $this->sku = $product->sku;
-        $this->brand_id = $product->brand_id;
+        $this->brand_id = (int) $product->brand_id;
         $this->description = $product->description;
         $this->isVisible = $product->is_visible;
         $this->price_amount = $product->price_amount;
