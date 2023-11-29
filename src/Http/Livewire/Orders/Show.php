@@ -15,7 +15,6 @@ use WireUi\Traits\Actions;
 
 class Show extends Component
 {
-    use Actions;
     use WithPagination;
 
     public Order $order;
@@ -33,10 +32,11 @@ class Show extends Component
     {
         $this->order->update(['status' => OrderStatus::CANCELLED]);
 
-        $this->notification()->success(
-            __('Cancelled'),
-            __('This order has been cancelled!')
-        );
+        Notification::make()
+            ->title(__('Cancelled'))
+            ->body(__('This order has been cancelled'))
+            ->success()
+            ->send();
     }
 
     public function leaveNotes(): void
@@ -47,10 +47,11 @@ class Show extends Component
 
         // TODO Send notification to the customer about order notes.
 
-        $this->notification()->success(
-            __('Notes added'),
-            __('Your note has been added and will be emailed to the user on their order.')
-        );
+        Notification::make()
+            ->title(__('Notes added'))
+            ->body(__('Your note has been added and will be emailed to the user on their order.'))
+            ->success()
+            ->send();
     }
 
     public function register(): void
@@ -59,30 +60,33 @@ class Show extends Component
 
         // TODO Send notification to the customer about order registration.
 
-        $this->notification()->success(
-            __('Updated Status'),
-            __('This order has been marked as register and notification has been sent to the customer by email.')
-        );
+        Notification::make()
+            ->title(__('Updated Status'))
+            ->body(__('This order has been marked as register and notification has been sent to the customer by email'))
+            ->success()
+            ->send();
     }
 
     public function markPaid(): void
     {
         $this->order->update(['status' => OrderStatus::PAID]);
 
-        $this->notification()->success(
-            __('Updated Status'),
-            __('This order is marked as paid!')
-        );
+        Notification::make()
+            ->title(__('Updated Status'))
+            ->body(__('This order is marked as paid'))
+            ->success()
+            ->send();
     }
 
     public function markComplete(): void
     {
         $this->order->update(['status' => OrderStatus::COMPLETED]);
 
-        $this->notification()->success(
-            __('Updated Status'),
-            __('This order is marked as complete.')
-        );
+        Notification::make()
+            ->title(__('Updated Status'))
+            ->body(__('This order is marked as complete'))
+            ->success()
+            ->send();
     }
 
     public function unregister(): void
@@ -91,30 +95,33 @@ class Show extends Component
 
         // TODO Send notification to the customer about order registration.
 
-        $this->notification()->success(
-            __('Updated Status'),
-            __('This order has been marked as unregister and notification has been sent to the customer by email.')
-        );
+        Notification::make()
+            ->title(__('Updated Status'))
+            ->body(__('This order has been marked as unregister and notification has been sent to the customer by email.'))
+            ->success()
+            ->send();
     }
 
     public function markUnpaid(): void
     {
         $this->order->update(['status' => OrderStatus::REGISTER]);
 
-        $this->notification()->success(
-            __('Updated Status'),
-            __('This order is marked as unpaid!')
-        );
+        Notification::make()
+            ->title(__('Updated Status'))
+            ->body(__('This order is marked as unpaid!'))
+            ->success()
+            ->send();
     }
 
     public function markUncomplete(): void
     {
         $this->order->update(['status' => OrderStatus::PAID]);
 
-        $this->notification()->success(
-            __('Updated Status'),
-            __('This order is marked as uncomplete.')
-        );
+        Notification::make()
+            ->title(__('Updated Status'))
+            ->body(__('This order is marked as uncomplete.'))
+            ->success()
+            ->send();
     }
 
     public function render(): View
