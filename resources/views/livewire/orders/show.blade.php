@@ -31,11 +31,12 @@
                 </div>
                 <div class="flex space-x-3">
                     @if(! $order->isCompleted())
+
                         @if(! $order->isPaid())
                             <span class="hidden sm:block">
                                 <x-shopper::buttons.danger wire:click="$emit('openModal', 'shopper-modals.archived-order', {{ json_encode([$order->id]) }})" type="button">
                                     <x-heroicon-s-archive class="w-5 h-5 -ml-1 mr-2" />
-                                    {{ __('shopper::layout.forms.actions.delete') }}
+                                    {{ __('Archived') }}
                                 </x-shopper::buttons.danger>
                             </span>
                         @endif
@@ -43,7 +44,7 @@
                         <x-shopper::dropdown>
                             <x-slot name="trigger">
                                 <x-shopper::buttons.default>
-                                    {{ __('shopper::layout.forms.actions.more_actions') }}
+                                    {{ __('More actions') }}
                                     <svg class="w-5 h-5 -mr-1 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
                                     </svg>
@@ -54,32 +55,65 @@
                                 <div class="py-1">
                                     @if($order->isPending())
                                         <x-shopper::dropdown-button wire:click="register" role="menuitem">
-                                            {{ __('shopper::status.registered') }}
+                                            {{ __('Register') }}
                                         </x-shopper::dropdown-button>
                                     @endif
 
                                     @if($order->isPending() || $order->isRegister())
                                         <x-shopper::dropdown-button wire:click="markPaid" role="menuitem">
-                                            {{ __('shopper::layout.forms.actions.mark_paid') }}
+                                            {{ __('Mark as paid') }}
                                         </x-shopper::dropdown-button>
                                     @endif
 
                                     @if($order->isPaid())
                                         <x-shopper::dropdown-button wire:click="markComplete" role="menuitem">
-                                            <x-heroicon-o-check-circle class="mr-3 h-5 w-5 text-secondary-400 dark:text-secondary-500" />
-                                            {{ __('shopper::layout.forms.actions.mark_complete') }}
+                                            <x-heroicon-o-check-circle class="mr-3 h-5 w-5 text-secondary-400 dark:text-secondary-500 group-hover:text-secondary-500 dark:text-secondary-500" />
+                                            {{ __('Mark complete') }}
                                         </x-shopper::dropdown-button>
                                     @endif
 
                                     @if($order->canBeCancelled())
                                         <x-shopper::dropdown-button wire:click="cancelOrder" role="menuitem">
-                                            <x-heroicon-s-x class="mr-3 h-5 w-5 text-secondary-400 dark:text-secondary-500" />
-                                            {{ __('shopper::layout.forms.actions.cancel_order') }}
+                                            <x-heroicon-s-x class="mr-3 h-5 w-5 text-secondary-400 dark:text-secondary-500 group-hover:text-secondary-500 dark:text-secondary-500" />
+                                            {{ __('Cancel Order') }}
                                         </x-shopper::dropdown-button>
                                     @endif
                                 </div>
                             </x-slot>
                         </x-shopper::dropdown>
+                        @if((!$order->isPending() && $order->isRegister()) || $order->isPaid())
+                            <x-shopper::dropdown>
+                                <x-slot name="trigger">
+                                    <x-shopper::buttons.default>
+                                        {{ __('More actions') }}
+                                        <svg class="w-5 h-5 -mr-1 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                                        </svg>
+                                    </x-shopper::buttons.default>
+                                </x-slot>
+
+                                <x-slot name="content">
+                                    <div class="py-1">
+                                        @if(!$order->isPending() && $order->isRegister())
+                                            <x-shopper::dropdown-button wire:click="unregister" role="menuitem">
+                                                {{ __('Unregister') }}
+                                            </x-shopper::dropdown-button>
+                                        @endif
+
+                                        @if($order->isPaid())
+                                            <x-shopper::dropdown-button wire:click="markUnpaid" role="menuitem">
+                                                {{ __('Mark as unpaid') }}
+                                            </x-shopper::dropdown-button>
+                                        @endif
+                                    </div>
+                                </x-slot>
+                            </x-shopper::dropdown>
+                        @endif
+                    @else
+                        <x-shopper::buttons.default wire:click="markUncomplete" role="menuitem">
+                            <x-heroicon-o-check-circle class="mr-3 h-5 w-5 text-secondary-400 dark:text-secondary-500 group-hover:text-secondary-500 dark:text-secondary-500" />
+                            {{ __('Mark uncomplete') }}
+                        </x-shopper::buttons.default>
                     @endif
 
                     <span class="relative z-0 inline-flex shadow-sm">

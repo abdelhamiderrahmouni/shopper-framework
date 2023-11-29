@@ -31,11 +31,10 @@ class Show extends Component
     {
         $this->order->update(['status' => OrderStatus::CANCELLED]);
 
-        Notification::make()
-            ->title(__('Cancelled'))
-            ->body(__('This order has been cancelled'))
-            ->success()
-            ->send();
+        $this->notification()->success(
+            __('Cancelled'),
+            __('This order has been cancelled!')
+        );
     }
 
     public function leaveNotes(): void
@@ -46,11 +45,10 @@ class Show extends Component
 
         // TODO Send notification to the customer about order notes.
 
-        Notification::make()
-            ->title(__('Notes added'))
-            ->body(__('Your note has been added and will be emailed to the user on their order.'))
-            ->success()
-            ->send();
+        $this->notification()->success(
+            __('Notes added'),
+            __('Your note has been added and will be emailed to the user on their order.')
+        );
     }
 
     public function register(): void
@@ -59,33 +57,62 @@ class Show extends Component
 
         // TODO Send notification to the customer about order registration.
 
-        Notification::make()
-            ->title(__('Updated Status'))
-            ->body(__('This order has been marked as register and notification has been sent to the customer by email'))
-            ->success()
-            ->send();
+        $this->notification()->success(
+            __('Updated Status'),
+            __('This order has been marked as register and notification has been sent to the customer by email.')
+        );
     }
 
     public function markPaid(): void
     {
         $this->order->update(['status' => OrderStatus::PAID]);
 
-        Notification::make()
-            ->title(__('Updated Status'))
-            ->body(__('This order is marked as paid'))
-            ->success()
-            ->send();
+        $this->notification()->success(
+            __('Updated Status'),
+            __('This order is marked as paid!')
+        );
     }
 
     public function markComplete(): void
     {
         $this->order->update(['status' => OrderStatus::COMPLETED]);
 
-        Notification::make()
-            ->title(__('Updated Status'))
-            ->body(__('This order is marked as complete'))
-            ->success()
-            ->send();
+        $this->notification()->success(
+            __('Updated Status'),
+            __('This order is marked as complete.')
+        );
+    }
+
+    public function unregister(): void
+    {
+        $this->order->update(['status' => OrderStatus::PENDING]);
+
+        // TODO Send notification to the customer about order registration.
+
+        $this->notification()->success(
+            __('Updated Status'),
+            __('This order has been marked as unregister and notification has been sent to the customer by email.')
+        );
+    }
+
+    public function markUnpaid(): void
+    {
+        $this->order->update(['status' => OrderStatus::REGISTER]);
+
+        $this->notification()->success(
+            __('Updated Status'),
+            __('This order is marked as unpaid!')
+        );
+    }
+
+    public function markUncomplete(): void
+    {
+        $this->order->update(['status' => OrderStatus::PAID]);
+
+        $this->notification()->success(
+            __('Updated Status'),
+            __('This order is marked as uncomplete.')
+        );
     }
 
     public function render(): View
