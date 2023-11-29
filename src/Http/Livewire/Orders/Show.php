@@ -11,7 +11,6 @@ use Livewire\WithPagination;
 use Shopper\Framework\Models\Shop\Order\Order;
 use Shopper\Framework\Models\Shop\Order\OrderStatus;
 use Shopper\Framework\Models\User\Address;
-use WireUi\Traits\Actions;
 
 class Show extends Component
 {
