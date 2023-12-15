@@ -20,7 +20,9 @@ final class CreateCustomerColumns extends Migration
             $table->after('id', function ($table) {
                 $table->string('first_name')->nullable();
                 $table->string('last_name');
-                $table->enum('gender', ['male', 'female']);
+                if (!$table->hasColumn('gender')){
+                    $table->enum('gender', ['male', 'female']);
+                }
                 $table->string('phone_number')->nullable();
                 $table->date('birth_date')->nullable();
                 $table->string('avatar_type')->default('gravatar');
