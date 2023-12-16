@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Livewire\Component;
 use Livewire\Livewire;
+use RegexIterator;
 use Shopper\Framework\Console;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -108,6 +109,18 @@ class ShopperServiceProvider extends PackageServiceProvider
     {
         $this->loadMigrationsFrom(SHOPPER_PATH . '/database/migrations');
         $this->publishes([SHOPPER_PATH . '/database/seeders' => database_path('seeders')], 'shopper-seeders');
+
+        // Change the namespace of published seeders for the user to be able to use them
+        $seedersPath = app()->databasePath('seeders');
+        $directoryIterator = new \RecursiveDirectoryIterator($seedersPath);
+        $iteratorIterator = new \RecursiveIteratorIterator($directoryIterator);
+        $seederFiles = new \RegexIterator($iteratorIterator, '/^.+\.php$/i', RegexIterator::GET_MATCH);
+
+        foreach ($seederFiles as $seederFile) {
+            $content = file_get_contents($seederFile[0]);
+            $newContent = str_replace('Shopper\Framework\Database\Seeders', 'Database\Seeders', $content);
+            file_put_contents($seederFile[0], $newContent);
+        }
     }
 
     public function registeringPackage(): void
