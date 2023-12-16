@@ -20,7 +20,7 @@ final class CreateCustomerColumns extends Migration
             $table->after('id', function ($table) {
                 $table->string('first_name')->nullable();
                 $table->string('last_name');
-                if (!Schema::hasColumn('gender')){
+                if (!Schema::hasColumn('users', 'gender')){
                     $table->enum('gender', ['male', 'female']);
                 }
                 $table->string('phone_number')->nullable();
