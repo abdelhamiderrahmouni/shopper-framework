@@ -103,6 +103,8 @@ class Edit extends AbstractBaseComponent
         if (collect($this->files)->isNotEmpty()) {
             collect($this->files)->each(
                 fn ($file) => $this->product->addMedia($file->getRealPath())
+                    ->usingName(uniqid('product-image-', true))
+                    ->usingFileName(uniqid('product-image-', true) . '.' . $file->extension())
                     ->toMediaCollection(config('shopper.system.storage.disks.uploads'))
             );
         }

@@ -105,7 +105,10 @@ class Create extends AbstractBaseComponent
 
         if (collect($this->files)->isNotEmpty()) {
             collect($this->files)->each(
-                fn ($file) => $product->addMedia($file)->toMediaCollection(config('shopper.system.storage.disks.uploads'))
+                fn ($file) => $product->addMedia($file)
+                    ->usingName(uniqid('product-image-', true))
+                    ->usingFileName(uniqid('product-image-', true) . '.' . $file->extension())
+                    ->toMediaCollection(config('shopper.system.storage.disks.uploads'))
             );
         }
 

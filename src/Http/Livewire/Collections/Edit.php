@@ -93,6 +93,8 @@ class Edit extends AbstractBaseComponent
         if ($this->fileUrl) {
             $this->collection
                 ->addMedia($this->fileUrl)
+                ->usingName(uniqid('collection-image-', true))
+                ->usingFileName(uniqid('collection-image-', true) . '.' . pathinfo($this->fileUrl, PATHINFO_EXTENSION))
                 ->toMediaCollection(config('shopper.system.storage.disks.uploads'));
         }
 

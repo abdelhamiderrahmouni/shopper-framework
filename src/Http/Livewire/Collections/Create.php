@@ -74,7 +74,10 @@ class Create extends Component
         ]);
 
         if ($this->fileUrl) {
-            $collection->addMedia($this->fileUrl)->toMediaCollection(config('shopper.system.storage.disks.uploads'));
+            $collection->addMedia($this->fileUrl)
+                ->usingName(uniqid('collection-image-', true))
+                ->usingFileName(uniqid('collection-image-', true) . '.' . pathinfo($this->fileUrl, PATHINFO_EXTENSION))
+                ->toMediaCollection(config('shopper.system.storage.disks.uploads'));
         }
 
         if ($this->type === 'auto' && count($this->conditions) > 0 && $this->rule) {

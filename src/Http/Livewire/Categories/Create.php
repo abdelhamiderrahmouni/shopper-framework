@@ -62,7 +62,10 @@ class Create extends AbstractBaseComponent
         ]);
 
         if ($this->fileUrl) {
-            $category->addMedia($this->fileUrl)->toMediaCollection(config('shopper.system.storage.disks.uploads'));
+            $category->addMedia($this->fileUrl)
+                ->usingName(uniqid('category-image-', true))
+                ->usingFileName(uniqid('category-image-', true) . '.' . pathinfo($this->fileUrl, PATHINFO_EXTENSION))
+                ->toMediaCollection(config('shopper.system.storage.disks.uploads'));
         }
 
         session()->flash('success', __('Category successfully added!'));
