@@ -13,15 +13,21 @@ class Trix extends Component
 
     public ?string $value = null;
 
-    public function mount(string $value = null): void
+    public string $eventName = 'trix:valueUpdated';
+
+    public function mount(string $value = null, string|null $eventName = null): void
     {
         $this->value = $value;
         $this->trixId = 'trix-' . uniqid();
+
+        if ($eventName) {
+            $this->eventName = $eventName;
+        }
     }
 
     public function updatedValue(string $value): void
     {
-        $this->emitUp('trix:valueUpdated', $value);
+        $this->emitUp($this->eventName, $value);
     }
 
     public function render(): View
