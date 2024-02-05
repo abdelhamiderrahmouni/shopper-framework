@@ -6,6 +6,7 @@ namespace Shopper\Framework\Http\Livewire\Modals;
 
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Str;
 use LivewireUI\Modal\ModalComponent;
 use Shopper\Framework\Http\Livewire\Products\WithAttributes;
 use Shopper\Framework\Repositories\Ecommerce\ProductRepository;
@@ -68,8 +69,8 @@ class AddVariant extends ModalComponent
         if (collect($this->files)->isNotEmpty()) {
             collect($this->files)->each(
                 fn ($file) => $product->addMedia($file)
-                    ->usingName(uniqid('product-variant-image-', true))
-                    ->usingFileName(uniqid('product-variant-image-', true) . '.' . $file->extension())
+                    ->usingName($fileName = uniqid(Str::slug($this->name) . '-', false))
+                    ->usingFileName($fileName . '.' . $file->extension())
                     ->toMediaCollection(config('shopper.system.storage.disks.uploads'))
             );
         }

@@ -6,6 +6,7 @@ namespace Shopper\Framework\Http\Livewire\Collections;
 
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Shopper\Framework\Models\Shop\Product\CollectionRule;
 use Shopper\Framework\Repositories\Ecommerce\CollectionRepository;
@@ -76,9 +77,11 @@ class Create extends Component
         ]);
 
         if ($this->fileUrl) {
+            $fileName = uniqid(Str::slug($this->name) . '-', false);
+
             $collection->addMedia($this->fileUrl)
-                ->usingName(uniqid('collection-image-', true))
-                ->usingFileName(uniqid('collection-image-', true) . '.' . pathinfo($this->fileUrl, PATHINFO_EXTENSION))
+                ->usingName($fileName)
+                ->usingFileName($fileName . '.' . pathinfo($this->fileUrl, PATHINFO_EXTENSION))
                 ->toMediaCollection(config('shopper.system.storage.disks.uploads'));
         }
 

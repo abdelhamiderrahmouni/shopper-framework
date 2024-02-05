@@ -7,6 +7,7 @@ namespace Shopper\Framework\Http\Livewire\Products\Form;
 use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Shopper\Framework\Events\Products\ProductUpdated;
 use Shopper\Framework\Exceptions\GeneralException;
@@ -103,8 +104,8 @@ class Edit extends AbstractBaseComponent
         if (collect($this->files)->isNotEmpty()) {
             collect($this->files)->each(
                 fn ($file) => $this->product->addMedia($file->getRealPath())
-                    ->usingName(uniqid('product-image-', true))
-                    ->usingFileName(uniqid('product-image-', true) . '.' . $file->extension())
+                    ->usingName($fileName = uniqid(Str::slug($this->name) . '-', false))
+                    ->usingFileName($fileName . '.' . $file->extension())
                     ->toMediaCollection(config('shopper.system.storage.disks.uploads'))
             );
         }

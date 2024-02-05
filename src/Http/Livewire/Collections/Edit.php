@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Shopper\Framework\Http\Livewire\AbstractBaseComponent;
 use Shopper\Framework\Repositories\Ecommerce\CollectionRepository;
@@ -94,10 +95,12 @@ class Edit extends AbstractBaseComponent
         ]);
 
         if ($this->fileUrl) {
+            $fileName = uniqid(Str::slug($this->name) . '-', false);
+
             $this->collection
                 ->addMedia($this->fileUrl)
-                ->usingName(uniqid('collection-image-', true))
-                ->usingFileName(uniqid('collection-image-', true) . '.' . pathinfo($this->fileUrl, PATHINFO_EXTENSION))
+                ->usingName($fileName)
+                ->usingFileName($fileName . '.' . pathinfo($this->fileUrl, PATHINFO_EXTENSION))
                 ->toMediaCollection(config('shopper.system.storage.disks.uploads'));
         }
 

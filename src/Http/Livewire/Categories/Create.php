@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Shopper\Framework\Http\Livewire\Categories;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Str;
 use Shopper\Framework\Http\Livewire\AbstractBaseComponent;
 use Shopper\Framework\Repositories\Ecommerce\CategoryRepository;
 use Shopper\Framework\Traits\WithChoicesCategories;
@@ -64,9 +65,11 @@ class Create extends AbstractBaseComponent
         ]);
 
         if ($this->fileUrl) {
+            $fileName = uniqid(Str::slug($this->name) . '-', false);
+
             $category->addMedia($this->fileUrl)
-                ->usingName(uniqid('category-image-', true))
-                ->usingFileName(uniqid('category-image-', true) . '.' . pathinfo($this->fileUrl, PATHINFO_EXTENSION))
+                ->usingName($fileName)
+                ->usingFileName($fileName . '.' . pathinfo($this->fileUrl, PATHINFO_EXTENSION))
                 ->toMediaCollection(config('shopper.system.storage.disks.uploads'));
         }
 

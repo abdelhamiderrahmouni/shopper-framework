@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Shopper\Framework\Http\Livewire\Products;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Str;
 use Milon\Barcode\Facades\DNS1DFacade;
 use Shopper\Framework\Exceptions\GeneralException;
 use Shopper\Framework\Http\Livewire\AbstractBaseComponent;
@@ -108,8 +109,8 @@ class Create extends AbstractBaseComponent
         if (collect($this->files)->isNotEmpty()) {
             collect($this->files)->each(
                 fn ($file) => $product->addMedia($file)
-                    ->usingName(uniqid('product-image-', true))
-                    ->usingFileName(uniqid('product-image-', true) . '.' . $file->extension())
+                    ->usingName($fileName = uniqid(Str::slug($this->name) . '-', false))
+                    ->usingFileName($fileName . '.' . pathinfo($file, PATHINFO_EXTENSION))
                     ->toMediaCollection(config('shopper.system.storage.disks.uploads'))
             );
         }

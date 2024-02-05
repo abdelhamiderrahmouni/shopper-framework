@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Shopper\Framework\Http\Livewire\Brands;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Shopper\Framework\Http\Livewire\AbstractBaseComponent;
 use Shopper\Framework\Traits\WithSeoAttributes;
@@ -83,9 +84,11 @@ class Edit extends AbstractBaseComponent
         ]);
 
         if ($this->fileUrl) {
+            $fileName = uniqid(Str::slug($this->name) . '-', false);
+
             $this->brand->addMedia($this->fileUrl)
-                ->usingName(uniqid('brand-image-', true))
-                ->usingFileName(uniqid('brand-image-', true) . '.' . pathinfo($this->fileUrl, PATHINFO_EXTENSION))
+                ->usingName($fileName)
+                ->usingFileName($fileName . '.' . pathinfo($this->fileUrl, PATHINFO_EXTENSION))
                 ->toMediaCollection(config('shopper.system.storage.disks.uploads'));
         }
 
