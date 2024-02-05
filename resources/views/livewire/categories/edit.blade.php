@@ -69,6 +69,7 @@
                 :title="$seoTitle"
                 :url="$category->slug"
                 :description="$seoDescription"
+                :keywords="$seoKeywords"
                 :canUpdate="$updateSeo"
             />
         </div>

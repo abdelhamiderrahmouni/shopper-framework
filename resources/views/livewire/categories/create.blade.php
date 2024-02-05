@@ -83,6 +83,7 @@
                 :title="$seoTitle"
                 :url="str_slug($name)"
                 :description="$seoDescription"
+                :keywords="$seoKeywords"
                 :canUpdate="$updateSeo"
             />
         </div>

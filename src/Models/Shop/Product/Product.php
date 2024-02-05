@@ -71,6 +71,7 @@ class Product extends Model implements HasMedia, ReviewRateable
         'volume_unit',
         'seo_title',
         'seo_description',
+        'seo_keywords',
     ];
 
     /**

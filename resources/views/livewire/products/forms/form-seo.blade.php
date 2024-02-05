@@ -27,6 +27,9 @@
                         <x-shopper::forms.textarea wire:model.defer="seoDescription" id="seo_description" />
                     </div>
                 </div>
+                <x-shopper::forms.group :label="__('shopper::layout.forms.label.keywords')">
+                    <x-shopper::forms.input wire:model.defer="seoKeywords" id="seo_keywords" type="text" autocomplete="off" />
+                </x-shopper::forms.group>
                 <div>
                     <x-shopper::forms.group :label="__('shopper::layout.forms.label.friendly_url')" for="slug" isRequired :error="$errors->first('slug')">
                         <x-shopper::forms.input wire:model.defer="slug" id="slug" type="text" autocomplete="off" placeholder="my-custom-url" />

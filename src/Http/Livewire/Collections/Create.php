@@ -31,9 +31,10 @@ class Create extends Component
 
     public string $condition_match = 'all';
 
-    public $seoAttributes = [
+    public array $seoAttributes = [
         'name' => 'name',
         'description' => 'description',
+        'keywords' => 'keywords',
     ];
 
     protected $listeners = [
@@ -70,6 +71,7 @@ class Create extends Component
             'match_conditions' => $this->condition_match,
             'seo_title' => $this->seoTitle,
             'seo_description' => $this->seoDescription,
+            'seo_keywords' => str_limit($this->seoKeywords, 255),
             'published_at' => $this->publishedAt ?? now(),
         ]);
 

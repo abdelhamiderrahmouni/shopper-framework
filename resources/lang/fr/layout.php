@@ -120,6 +120,7 @@ return [
             'ga_json' => 'Références du compte en Json',
             'gtag' => 'ID de compte Google Tag Manager',
             'pixel_id' => 'ID du compte Facebook Pixel',
+            'keywords' => 'Mots clés',
         ],
 
         'placeholder' => [

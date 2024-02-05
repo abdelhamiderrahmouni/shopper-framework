@@ -27,9 +27,10 @@ class Edit extends AbstractBaseComponent
 
     public ?string $fileUrl = null;
 
-    public $seoAttributes = [
+    public array $seoAttributes = [
         'name' => 'name',
         'description' => 'description',
+        'keywords' => 'keywords',
     ];
 
     protected $listeners = [
@@ -58,6 +59,7 @@ class Edit extends AbstractBaseComponent
         $this->updateSeo = true;
         $this->seoTitle = $brand->seo_title ?? $brand->name;
         $this->seoDescription = $brand->seo_description;
+        $this->seoKeywords = $brand->seo_keywords;
     }
 
     public function isUpdate(): bool
@@ -77,6 +79,7 @@ class Edit extends AbstractBaseComponent
             'is_enabled' => $this->is_enabled,
             'seo_title' => $this->seoTitle,
             'seo_description' => str_limit($this->seoDescription, 157),
+            'seo_keywords' => str_limit($this->seoKeywords, 255),
         ]);
 
         if ($this->fileUrl) {

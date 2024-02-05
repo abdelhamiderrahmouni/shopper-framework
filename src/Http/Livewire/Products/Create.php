@@ -36,6 +36,7 @@ class Create extends AbstractBaseComponent
     public array $seoAttributes = [
         'name' => 'name',
         'description' => 'description',
+        'keywords' => 'keywords',
     ];
 
     protected $listeners = [
@@ -92,6 +93,7 @@ class Create extends AbstractBaseComponent
             'published_at' => $this->publishedAt ?? now(),
             'seo_title' => $this->seoTitle,
             'seo_description' => str_limit($this->seoDescription, 157),
+            'seo_keywords' => str_limit($this->seoKeywords, 255),
             'weight_value' => $this->weightValue ?? null,
             'weight_unit' => $this->weightUnit,
             'height_value' => $this->heightValue ?? null,

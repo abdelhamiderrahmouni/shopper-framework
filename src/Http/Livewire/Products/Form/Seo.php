@@ -22,9 +22,10 @@ class Seo extends Component
 
     public string $slug;
 
-    public $seoAttributes = [
+    public array $seoAttributes = [
         'name' => 'name',
         'description' => 'description',
+        'keywords' => 'keywords',
     ];
 
     public function mount($product): void
@@ -34,6 +35,7 @@ class Seo extends Component
         $this->slug = $product->slug;
         $this->seoTitle = $product->seo_title;
         $this->seoDescription = $product->seo_description;
+        $this->seoKeywords = $product->seo_keywords;
     }
 
     public function store(): void
@@ -49,6 +51,7 @@ class Seo extends Component
             'slug' => str_slug($this->slug),
             'seo_title' => $this->seoTitle,
             'seo_description' => str_limit($this->seoDescription, 157),
+            'seo_keywords' => str_limit($this->seoKeywords, 255),
         ]);
 
         $this->emit('productHasUpdated', $this->productId);

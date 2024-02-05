@@ -36,6 +36,7 @@ class Collection extends Model implements HasMedia
         'match_conditions',
         'seo_title',
         'seo_description',
+        'seo_keywords',
     ];
 
     /**

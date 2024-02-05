@@ -1,4 +1,4 @@
-@props(['slug', 'title', 'description', 'url', 'canUpdate'])
+@props(['slug', 'title', 'description', 'keywords', 'url', 'canUpdate'])
 
 <div class="bg-white rounded-lg shadow-md divide-y divide-secondary-200 dark:bg-secondary-800 dark:divide-secondary-700">
     <div class="p-4 sm:p-5">
@@ -33,6 +33,9 @@
                     <p class="mt-1 text-secondary-500 text-sm leading-5 dark:text-secondary-400">
                         {{ str_limit($description, 160) }}
                     </p>
+                    <p class="mt-1 text-secondary-500 text-sm leading-5 dark:text-secondary-400">
+                        {{ str_limit($keywords, 255) }}
+                    </p>
                 </div>
             @endif
         </div>
@@ -51,6 +54,9 @@
                     <x-shopper::forms.textarea wire:model.debounce.500ms="seoDescription" id="seo_description" />
                 </div>
             </div>
+            <x-shopper::forms.group for="seo_keywords" :label="__('shopper::layout.forms.label.keywords')">
+                <x-shopper::forms.input wire:model.debounce.500ms="seoKeywords" id="seo_keywords" type="text" autocomplete="off" />
+            </x-shopper::forms.group>
         </div>
     @endif
 </div>

@@ -39,9 +39,10 @@ class Edit extends AbstractBaseComponent
 
     public ?string $fileUrl = null;
 
-    public $seoAttributes = [
+    public array $seoAttributes = [
         'name' => 'name',
         'description' => 'description',
+        'keywords' => 'keywords',
     ];
 
     protected $listeners = [
@@ -63,6 +64,7 @@ class Edit extends AbstractBaseComponent
         $this->updateSeo = true;
         $this->seoTitle = $collection->seo_title ?? $collection->name;
         $this->seoDescription = $collection->seo_description;
+        $this->seoKeywords = $collection->seo_keywords;
     }
 
     public function onTrixValueUpdate(string $value): void
@@ -87,6 +89,7 @@ class Edit extends AbstractBaseComponent
             'match_conditions' => $this->condition_match,
             'seo_title' => $this->seoTitle,
             'seo_description' => str_limit($this->seoDescription, 157),
+            'seo_keywords' => str_limit($this->seoKeywords, 255),
             'published_at' => $this->publishedAt,
         ]);
 

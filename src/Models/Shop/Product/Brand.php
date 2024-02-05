@@ -33,6 +33,7 @@ class Brand extends Model implements HasMedia
         'position',
         'seo_title',
         'seo_description',
+        'seo_keywords',
         'is_enabled',
     ];
 

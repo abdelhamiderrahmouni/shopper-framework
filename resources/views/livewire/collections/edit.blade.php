@@ -37,6 +37,7 @@
                 :title="$seoTitle"
                 :url="$collection->slug"
                 :description="$seoDescription"
+                :keywords="$seoKeywords"
                 :canUpdate="$updateSeo"
             />
         </div>

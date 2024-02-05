@@ -12,6 +12,8 @@ trait WithSeoAttributes
 
     public ?string $seoDescription = null;
 
+    public ?string $seoKeywords = null;
+
     /**
      * Define is the current action is create or update.
      *
@@ -31,5 +33,9 @@ trait WithSeoAttributes
         $this->seoDescription = $this->isUpdate()
             ? str_limit(strip_tags(nl2br($this->seoDescription ?? '')), 157)
             : str_limit(strip_tags(nl2br($this->{$this->seoAttributes['description']} ?? '')), 157);
+
+        $this->seoKeywords = $this->isUpdate()
+            ? str_limit(strip_tags(nl2br($this->seoKeywords ?? '')), 255)
+            : str_limit(strip_tags(nl2br($this->{$this->seoAttributes['keywords']} ?? '')), 255);
     }
 }

@@ -31,6 +31,7 @@ trait Migration
     {
         $table->string('seo_title', 60)->nullable();
         $table->string('seo_description', 160)->nullable();
+        $table->string('seo_keywords', 260)->nullable();
     }
 
     public function addShippingFields(Blueprint $table): void

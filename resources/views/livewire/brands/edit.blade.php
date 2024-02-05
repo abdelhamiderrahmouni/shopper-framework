@@ -63,6 +63,7 @@
                 :title="$seoTitle"
                 :url="$brand->slug"
                 :description="$seoDescription"
+                :keywords="$seoKeywords"
                 :canUpdate="$updateSeo"
             />
         </div>

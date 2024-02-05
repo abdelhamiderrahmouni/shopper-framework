@@ -27,9 +27,10 @@ class Create extends AbstractBaseComponent
 
     public $parent;
 
-    public $seoAttributes = [
+    public array $seoAttributes = [
         'name' => 'name',
         'description' => 'description',
+        'keywords' => 'keywords',
     ];
 
     protected $listeners = [
@@ -58,7 +59,8 @@ class Create extends AbstractBaseComponent
             'description' => $this->description,
             'is_enabled' => $this->is_enabled,
             'seo_title' => $this->seoTitle,
-            'seo_description' => $this->seoDescription,
+            'seo_description' => str_limit($this->seoDescription, 157),
+            'seo_keywords' => str_limit($this->seoKeywords, 255),
         ]);
 
         if ($this->fileUrl) {

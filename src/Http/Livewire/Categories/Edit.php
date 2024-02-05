@@ -33,9 +33,10 @@ class Edit extends AbstractBaseComponent
 
     public $parent;
 
-    public $seoAttributes = [
+    public array $seoAttributes = [
         'name' => 'name',
         'description' => 'description',
+        'keywords' => 'keywords',
     ];
 
     protected $listeners = [
@@ -54,6 +55,7 @@ class Edit extends AbstractBaseComponent
         $this->updateSeo = true;
         $this->seoTitle = $category->seo_title ?? $category->name;
         $this->seoDescription = $category->seo_description;
+        $this->seoKeywords = $category->seo_keywords;
         $this->selectedCategory = $category->parent_id ? [$category->parent_id] : [];
         $this->parent = $category->parent_id ? $category->parent : null;
     }
@@ -85,6 +87,7 @@ class Edit extends AbstractBaseComponent
             'is_enabled' => $this->is_enabled,
             'seo_title' => $this->seoTitle,
             'seo_description' => str_limit($this->seoDescription, 157),
+            'seo_keywords' => str_limit($this->seoKeywords, 255),
         ]);
 
         if ($this->fileUrl) {

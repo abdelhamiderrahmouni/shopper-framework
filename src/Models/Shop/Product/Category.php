@@ -35,6 +35,7 @@ class Category extends Model implements HasMedia
         'is_enabled',
         'seo_title',
         'seo_description',
+        'seo_keywords',
         'parent_id',
     ];
 
