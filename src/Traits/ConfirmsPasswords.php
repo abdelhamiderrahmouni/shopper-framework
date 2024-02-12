@@ -81,7 +81,7 @@ trait ConfirmsPasswords
     /**
      * Ensure that the user's password has been recently confirmed.
      */
-    protected function ensurePasswordIsConfirmed(int $maximumSecondsSinceConfirmation = null)
+    protected function ensurePasswordIsConfirmed(?int $maximumSecondsSinceConfirmation = null)
     {
         $maximumSecondsSinceConfirmation ??= config('auth.password_timeout', 900);
 
@@ -91,7 +91,7 @@ trait ConfirmsPasswords
     /**
      * Determine if the user's password has been recently confirmed.
      */
-    protected function passwordIsConfirmed(int $maximumSecondsSinceConfirmation = null): bool
+    protected function passwordIsConfirmed(?int $maximumSecondsSinceConfirmation = null): bool
     {
         $maximumSecondsSinceConfirmation ??= config('auth.password_timeout', 900);
 

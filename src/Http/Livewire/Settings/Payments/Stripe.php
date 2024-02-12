@@ -36,7 +36,7 @@ class Stripe extends Component
         $method = PaymentMethod::query()->firstOrCreate([
             'title' => 'Stripe',
             'slug' => 'stripe',
-        ],[
+        ], [
             'title' => 'Stripe',
             'slug' => 'stripe',
             'link_url' => 'https://github.com/stripe/stripe-php',

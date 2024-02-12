@@ -90,8 +90,8 @@ class Mailable
     /**
      * Gets any missing params that may not be collectable in the reflection.
      *
-     * @param  string  $arg    the argument string|
-     * @param  array  $params the reflection param list
+     * @param  string  $arg  the argument string|
+     * @param  array  $params  the reflection param list
      * @return array|\ReeceM\Mocker\Mocked|string
      */
     private static function getMissingParams($arg, $params)

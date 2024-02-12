@@ -30,7 +30,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::whenTableHasColumn($this->getTableName('collections'),'seo_keywords', function (Blueprint $table) {
+        Schema::whenTableHasColumn($this->getTableName('collections'), 'seo_keywords', function (Blueprint $table) {
             $table->dropColumn('seo_keywords');
         });
     }

@@ -142,7 +142,7 @@ if (! \function_exists('shopper_money_format')) {
     /**
      * Return money format.
      */
-    function shopper_money_format($amount, string $currency = null): string
+    function shopper_money_format($amount, ?string $currency = null): string
     {
         $amount = (int) $amount * 100; // the amount is already devided by 100 in the model
         $money = new Money($amount, new Currency($currency ?? shopper_currency()));

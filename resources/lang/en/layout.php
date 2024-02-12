@@ -120,7 +120,7 @@ return [
             'ga_json' => 'Json Account Credentials',
             'gtag' => 'Your Google Tag Manager account ID',
             'pixel_id' => 'Your Facebook Pixel account ID',
-            'keywords' => 'Keywords'
+            'keywords' => 'Keywords',
         ],
 
         'placeholder' => [
