@@ -64,6 +64,19 @@ return [
         ],
         'stripe_environment' => 'Stripe dispose de deux environnements: Sandbox et Live. Veillez à utiliser le sandbox pour les tests avant de passer à l\'action.',
         'stripe_dashboard' => 'Les clés d\'API peuvent être récupérées à partir de',
+
+        'paypal_description' => 'Acceptez les paiements sur votre boutique en utilisant des fournisseurs tiers tels que Paypal.',
+        'paypal_enabled' => 'Paypal est disponible pour votre magasin.',
+        'paypal_disabled' => 'Paypal n\'est pas activé.',
+        'paypal_provider' => 'Ce fournisseur vous permet d\'intégrer Paypal PHP dans votre boutique pour permettre à vos clients d\'effectuer des paiements.',
+        'paypal_about' => 'En savoir plus sur Paypal Payment',
+        'paypal_actions' => [
+            'enable' => 'Activer Paiement Paypal',
+            'disable' => 'Désactiver Paiement Paypal',
+        ],
+        'paypal_environment' => 'Paypal dispose de deux environnements: Sandbox et Live. Veillez à utiliser le sandbox pour les tests avant de passer à l\'action.',
+        'paypal_dashboard' => 'Les clés d\'API peuvent être récupérées à partir de',
+
         'create_payment' => 'Créer un moyen de paiement',
         'no_method' => 'Aucune méthode de paiement trouvée',
     ],
@@ -78,6 +91,9 @@ return [
         'stripe' => 'La configuration de vos paiements Stripe a été correctement mise à jour !',
         'stripe_enable' => 'Vous avez activé avec succès le paiement Stripe pour votre boutique !',
         'stripe_disable' => 'Vous avez désactivé avec succès le paiement Stripe pour votre boutique !',
+        'paypal_enable' => 'Vous avez activé avec succès le paiement Paypal pour votre boutique !',
+        'paypal_disable' => 'Vous avez désactivé avec succès le paiement Paypal pour votre boutique !',
+        'paypal' => 'La configuration de vos paiements Paypal a été correctement mise à jour !',
     ],
 
     'roles_permissions' => [

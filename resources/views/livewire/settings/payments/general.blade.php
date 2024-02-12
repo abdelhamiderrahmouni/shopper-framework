@@ -1,7 +1,7 @@
 <div
     x-data="{
-        options: ['general', 'stripe'],
-        words: {'general': '{{ __('General') }}', 'stripe': '{{ __('Stripe') }}'},
+        options: ['general', 'stripe', 'paypal'],
+        words: {'general': '{{ __('General') }}', 'stripe': '{{ __('Stripe') }}', 'paypal': '{{ __('Paypal') }}'},
         currentTab: 'general'
     }"
 >
@@ -45,6 +45,10 @@
 
                     <button @click="currentTab = 'stripe'" type="button" class="whitespace-no-wrap pb-4 px-1 border-b-2 border-transparent font-medium text-sm leading-5 text-secondary-500 hover:text-secondary-700 hover:border-secondary-300 dark:text-secondary-400 dark:hover:text-secondary-500 dark:hover:border-secondary-400 focus:outline-none" :class="{ 'border-primary-500 text-primary-600 focus:text-primary-800 focus:border-primary-700': currentTab === 'stripe' }">
                         {{ __('Stripe') }}
+                    </button>
+
+                    <button @click="currentTab = 'paypal'" type="button" class="whitespace-no-wrap pb-4 px-1 border-b-2 border-transparent font-medium text-sm leading-5 text-secondary-500 hover:text-secondary-700 hover:border-secondary-300 dark:text-secondary-400 dark:hover:text-secondary-500 dark:hover:border-secondary-400 focus:outline-none" :class="{ 'border-primary-500 text-primary-600 focus:text-primary-800 focus:border-primary-700': currentTab === 'paypal' }">
+                        {{ __('Paypal') }}
                     </button>
                 </nav>
             </div>
@@ -183,8 +187,13 @@
                 </div>
             </div>
         </div>
+
         <div x-cloak x-show="currentTab === 'stripe'">
             <livewire:shopper-settings.payments.stripe />
+        </div>
+
+        <div x-cloak x-show="currentTab === 'paypal'">
+            <livewire:shopper-settings.payments.paypal />
         </div>
     </div>
 

@@ -125,6 +125,7 @@ return [
         'settings.management.users-role' => Livewire\Settings\Management\UsersRole::class,
         'settings.payments.general' => Livewire\Settings\Payments\General::class,
         'settings.payments.stripe' => Livewire\Settings\Payments\Stripe::class,
+        'settings.payments.paypal' => Livewire\Settings\Payments\Paypal::class,
 
         'tables.attributes-table' => Livewire\Tables\AttributesTable::class,
         'tables.brands-table' => Livewire\Tables\BrandsTable::class,

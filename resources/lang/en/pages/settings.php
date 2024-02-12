@@ -64,6 +64,19 @@ return [
         ],
         'stripe_environment' => 'Stripe has two environments Sandbox and Live, make sure to use sandbox for testing before going live.',
         'stripe_dashboard' => 'API Keys can be grabbed from',
+
+        'paypal_description' => 'Accept payments on your store using third-party providers such as Paypal.',
+        'paypal_enabled' => 'Paypal is available for your store.',
+        'paypal_disabled' => 'Paypal is not enabled.',
+        'paypal_provider' => 'This provider allows you to integrate Paypal PHP into your store to allow your customers to make payments.',
+        'paypal_about' => 'Learn more about Paypal Payment',
+        'paypal_actions' => [
+            'enable' => 'Enable Paypal Payment',
+            'disable' => 'Disable Paypal Payment',
+        ],
+        'paypal_environment' => 'Paypal has two environments Sandbox and Live, make sure to use sandbox for testing before going live.',
+        'paypal_dashboard' => 'API Keys can be grabbed from',
+
         'create_payment' => 'Create payment method',
         'no_method' => 'No payment methods found',
     ],
@@ -78,6 +91,9 @@ return [
         'stripe' => 'Your Stripe payments configuration have been correctly updated!',
         'stripe_enable' => 'You have successfully enabled Stripe payment for your store!',
         'stripe_disable' => 'You have successfully disabled Stripe payment for your store!',
+        'paypal_enable' => 'You have successfully enabled Paypal payment for your store!',
+        'paypal_disable' => 'You have successfully disabled Paypal payment for your store!',
+        'paypal' => 'Your Paypal payments configuration have been correctly updated!',
     ],
 
     'roles_permissions' => [
