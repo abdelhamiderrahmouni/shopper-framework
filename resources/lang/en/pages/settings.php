@@ -58,7 +58,10 @@ return [
         'stripe_disabled' => 'Stripe is not enabled.',
         'stripe_provider' => 'This provider allows you to integrate Stripe PHP into your store to allow your customers to make payments.',
         'stripe_about' => 'Learn more about Stripe Payment',
-        'stripe_actions' => 'Enabled Stripe Payment',
+        'stripe_actions' => [
+            'enable' => 'Enable Stripe Payment',
+            'disable' => 'Disable Stripe Payment',
+        ],
         'stripe_environment' => 'Stripe has two environments Sandbox and Live, make sure to use sandbox for testing before going live.',
         'stripe_dashboard' => 'API Keys can be grabbed from',
         'create_payment' => 'Create payment method',
@@ -74,6 +77,7 @@ return [
         'email_config' => 'Your mail configurations have been correctly updated!',
         'stripe' => 'Your Stripe payments configuration have been correctly updated!',
         'stripe_enable' => 'You have successfully enabled Stripe payment for your store!',
+        'stripe_disable' => 'You have successfully disabled Stripe payment for your store!',
     ],
 
     'roles_permissions' => [

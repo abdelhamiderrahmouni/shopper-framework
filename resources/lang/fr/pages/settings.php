@@ -58,7 +58,10 @@ return [
         'stripe_disabled' => 'Stripe n\'est pas activé.',
         'stripe_provider' => 'Ce fournisseur vous permet d\'intégrer Stripe PHP dans votre boutique pour permettre à vos clients d\'effectuer des paiements.',
         'stripe_about' => 'En savoir plus sur Stripe Payment',
-        'stripe_actions' => 'Activer le paiement Stripe',
+        'stripe_actions' => [
+            'enable' => 'Activer Paiement Stripe',
+            'disable' => 'Désactiver Paiement Stripe',
+        ],
         'stripe_environment' => 'Stripe dispose de deux environnements: Sandbox et Live. Veillez à utiliser le sandbox pour les tests avant de passer à l\'action.',
         'stripe_dashboard' => 'Les clés d\'API peuvent être récupérées à partir de',
         'create_payment' => 'Créer un moyen de paiement',
@@ -74,6 +77,7 @@ return [
         'email_config' => 'Vos configurations de messagerie ont été correctement mises à jour !',
         'stripe' => 'La configuration de vos paiements Stripe a été correctement mise à jour !',
         'stripe_enable' => 'Vous avez activé avec succès le paiement Stripe pour votre boutique !',
+        'stripe_disable' => 'Vous avez désactivé avec succès le paiement Stripe pour votre boutique !',
     ],
 
     'roles_permissions' => [
