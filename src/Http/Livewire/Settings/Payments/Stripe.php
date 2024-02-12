@@ -31,9 +31,12 @@ class Stripe extends Component
         $this->stripe_secret = env('STRIPE_SECRET', '');
     }
 
-    public function enabledStripe(): void
+    public function enableStripe(): void
     {
-        PaymentMethod::query()->create([
+        $method = PaymentMethod::query()->firstOrCreate([
+            'title' => 'Stripe',
+            'slug' => 'stripe',
+        ],[
             'title' => 'Stripe',
             'slug' => 'stripe',
             'link_url' => 'https://github.com/stripe/stripe-php',
@@ -41,11 +44,32 @@ class Stripe extends Component
             'description' => 'The Stripe PHP library provides convenient access to the Stripe API from applications written in the PHP language.',
         ]);
 
+        if (! $method->is_enabled) {
+            $method->update([
+                'is_enabled' => true,
+            ]);
+        }
+
         $this->enabled = true;
 
         Notification::make()
             ->title(__('shopper::layout.status.success'))
             ->body(__('shopper::pages/settings.notifications.stripe_enable'))
+            ->success()
+            ->send();
+    }
+
+    public function disableStripe(): void
+    {
+        PaymentMethod::where('slug', 'stripe')->first()->update([
+            'is_enabled' => false,
+        ]);
+
+        $this->enabled = false;
+
+        Notification::make()
+            ->title(__('shopper::layout.status.success'))
+            ->body(__('shopper::pages/settings.notifications.stripe_disable'))
             ->success()
             ->send();
     }

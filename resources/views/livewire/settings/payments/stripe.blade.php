@@ -51,10 +51,17 @@
                         </p>
                         @if(! $this->enabled)
                             <span class="mt-4 inline-flex rounded-md shadow-sm">
-                                <x-shopper::buttons.default wire:click="enabledStripe" wire.loading.attr="disabled" type="button">
-                                    <x-shopper::loader wire:loading wire:target="enabledStripe" class="text-secondary-600 dark:text-secondary-300" />
-                                    {{ __('shopper::pages/settings.payment.stripe_actions') }}
+                                <x-shopper::buttons.default wire:click="enableStripe" wire.loading.attr="disabled" type="button">
+                                    <x-shopper::loader wire:loading wire:target="enableStripe" class="text-secondary-600 dark:text-secondary-300" />
+                                    {{ __('shopper::pages/settings.payment.stripe_actions.enable') }}
                                 </x-shopper::buttons.default>
+                            </span>
+                        @else
+                            <span class="mt-4 inline-flex rounded-md shadow-sm">
+                                <x-shopper::buttons.danger wire:click="disableStripe" wire.loading.attr="disabled" type="button">
+                                    <x-shopper::loader wire:loading wire:target="disableStripe" class="text-secondary-600 dark:text-secondary-300" />
+                                    {{ __('shopper::pages/settings.payment.stripe_actions.disable') }}
+                                </x-shopper::buttons.danger>
                             </span>
                         @endif
                     </div>
