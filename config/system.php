@@ -169,6 +169,15 @@ return [
          */
 
         'channel' => \Shopper\Framework\Models\Shop\Channel::class,
+
+        /*
+         * Eloquent model should be used to retrieve your payments. Of course it
+         * is often just the "Payment" model but you may use whatever you like.
+         *
+         * The model you want to use as a Collection model needs to extends the
+         * `\Shopper\Framework\Models\Shop\Payment` model.
+         */
+        'payment' => \Shopper\Framework\Models\Shop\Payment::class,
     ],
 
     /*

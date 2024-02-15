@@ -21,9 +21,11 @@ Route::namespace('Ecommerce')->group(function () {
         Route::get('/{product}/variants/{id}', [ProductController::class, 'variant'])->name('variant');
     });
     Route::resource('orders', 'OrderController')->only(['index', 'show', 'create']);
+
+    Route::resource('payments', 'PaymentController')->only('index', 'show');
 });
 
-Route::resource('reviews', 'ReviewController');
+Route::resource('reviews', 'ReviewController')->only('index', 'show');
 Route::resource('discounts', 'DiscountController');
 Route::resource('inventory-histories', 'InventoryHistoryController');
 

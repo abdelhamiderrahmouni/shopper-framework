@@ -82,6 +82,20 @@ class RegisterShopSidebar extends AbstractAdminSidebar
                     </svg>
                 ');
             });
+
+            $group->item(__('shopper::layout.sidebar.payments'), function (Item $item) {
+                $item->weight(8);
+                $item->authorize($this->user->hasPermissionTo('browse_payments'));
+                $item->route('shopper.payments.index');
+                $item->icon('
+                    <svg class="shrink-0 -ml-1 mr-3 h-5 w-5"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M7 9m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z" />
+                        <path d="M14 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                        <path d="M17 9v-2a2 2 0 0 0 -2 -2h-10a2 2 0 0 0 -2 2v6a2 2 0 0 0 2 2h2" />
+                    </svg>
+                ');
+            });
         });
 
         return $menu;
