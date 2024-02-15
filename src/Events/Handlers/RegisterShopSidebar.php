@@ -74,7 +74,7 @@ class RegisterShopSidebar extends AbstractAdminSidebar
 
             $group->item(__('shopper::layout.sidebar.reviews'), function (Item $item) {
                 $item->weight(7);
-                $item->authorize($this->user->hasPermissionTo('browse_products'));
+                $item->authorize($this->user->hasPermissionTo('browse_reviews'));
                 $item->route('shopper.reviews.index');
                 $item->icon('
                     <svg class="shrink-0 -ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">

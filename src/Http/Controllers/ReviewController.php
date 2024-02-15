@@ -11,14 +11,14 @@ class ReviewController extends ShopperBaseController
 {
     public function index(): View
     {
-        $this->authorize('browse_products');
+        $this->authorize('browse_reviews');
 
         return view('shopper::pages.reviews.index');
     }
 
     public function show(Review $review): View
     {
-        $this->authorize('browse_products');
+        $this->authorize('read_reviews');
 
         return view('shopper::pages.reviews.show', compact('review'));
     }
