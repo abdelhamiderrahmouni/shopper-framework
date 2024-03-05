@@ -2,8 +2,13 @@
     x-data="{
         options: ['general', 'stripe', 'paypal'],
         words: {'general': '{{ __('General') }}', 'stripe': '{{ __('Stripe') }}', 'paypal': '{{ __('Paypal') }}'},
-        currentTab: 'general'
+        currentTab: new URLSearchParams(location.search).get('currentTab') ?? 'general'
     }"
+    x-init="$watch('currentTab', (value) => {
+        const url = new URL(window.location.href);
+        url.searchParams.set('currentTab', value);
+        history.pushState(null, document.title, url.toString());
+      })"
 >
 
     <x-shopper::breadcrumb :back="route('shopper.settings.index')">

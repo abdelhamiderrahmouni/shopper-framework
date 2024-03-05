@@ -121,6 +121,8 @@ return [
             'gtag' => 'ID de compte Google Tag Manager',
             'pixel_id' => 'ID du compte Facebook Pixel',
             'keywords' => 'Mots clés',
+            'paypal_test_mode' => 'Mode test Paypal',
+            'currency_conversion_rate' => 'Taux de conversion de la monnaie',
         ],
 
         'placeholder' => [
@@ -136,6 +138,11 @@ return [
             'search_by' => 'Rechercher par :label',
             'leave_comment' => 'Laisser des notes pour ce client',
             'search_payment' => 'Recherche de paiement par nom de fournisseur',
+        ],
+
+        'help_text' => [
+            'paypal_test_mode_description' => "Activez cette option pour utiliser l'environnement sandbox Paypal à des fins de test. si vous le désactivez, vous utiliserez l'environnement live.",
+            'currency_conversion_rate' => 'How much is 1 unit of your currency (:first) in the default currency (:second)? Example: 1 USD = 0.85 EUR',
         ],
 
         'actions' => [
@@ -198,6 +205,7 @@ return [
         'discounts' => 'Coupons',
         'shop' => 'Magasin',
         'products' => 'Produits',
+        'payments' => 'Payments',
     ],
 
     'account_dropdown' => [

@@ -121,6 +121,8 @@ return [
             'gtag' => 'Your Google Tag Manager account ID',
             'pixel_id' => 'Your Facebook Pixel account ID',
             'keywords' => 'Keywords',
+            'paypal_test_mode' => 'Paypal test mode',
+            'currency_conversion_rate' => 'Currency conversion rate',
         ],
 
         'placeholder' => [
@@ -136,6 +138,11 @@ return [
             'search_by' => 'Search by :label',
             'leave_comment' => 'Leave notes for this customer',
             'search_payment' => 'Search payment by provider name',
+        ],
+
+        'help_text' => [
+            'paypal_test_mode_description' => 'Enable this option to use the Paypal sandbox environment for testing purposes. if you disable it you will use the live environment.',
+            'currency_conversion_rate_description' => 'Combien vaut 1 unité de votre devise (:first) dans la devise par défaut (:second)? Exemple : 1 USD = 0,85 EUR',
         ],
 
         'actions' => [
@@ -198,6 +205,7 @@ return [
         'discounts' => 'Discounts',
         'shop' => 'Shop',
         'products' => 'Products',
+        'payments' => 'Payments',
     ],
 
     'account_dropdown' => [

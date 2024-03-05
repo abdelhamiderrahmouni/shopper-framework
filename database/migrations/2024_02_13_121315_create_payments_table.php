@@ -17,8 +17,11 @@ return new class extends Migration
     {
         Schema::create($this->getTableName('payments'), function (Blueprint $table) {
             $this->addCommonFields($table, true);
+
             $table->foreignId('order_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('payer_id')->nullable();
+            $table->string('payer_email')->nullable();
             $table->string('transaction_id')->nullable();
             $table->integer('amount');
             $table->string('currency');

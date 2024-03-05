@@ -134,6 +134,7 @@ return [
         'tables.customers-table' => Livewire\Tables\CustomersTable::class,
         'tables.orders-table' => Livewire\Tables\OrdersTable::class,
         'tables.products-table' => Livewire\Tables\ProductsTable::class,
+        'tables.payments-table' => Livewire\Tables\PaymentsTable::class,
         'tables.reviews-table' => Livewire\Tables\ReviewsTable::class,
     ],
 ];

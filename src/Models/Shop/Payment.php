@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Shopper\Framework\Enums\PaymentStatusEnum;
 use Shopper\Framework\Models\Shop\Order\Order;
 use Shopper\Framework\Models\Traits\HasPrice;
+use Shopper\Framework\Models\User\User;
 
 class Payment extends Model
 {
-    use HasFactory, HasPrice, SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'order_id',
@@ -32,13 +33,15 @@ class Payment extends Model
 
     protected $appends = [
         'formatted_amount',
+        'user',
+        'order',
     ];
 
     public function getFormattedAmountAttribute(): string|null
     {
         if ($this->amount) {
 
-            return $this->formattedPrice((int)$this->amount);
+            return $this->amount . '(' . $this->currency . ')';
         }
 
         return null;

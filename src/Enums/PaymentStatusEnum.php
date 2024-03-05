@@ -14,6 +14,8 @@ enum PaymentStatusEnum :string
 
     case REFUNDED = 'refunded'; // You have issued a refund to the customer, reversing the payment.
 
+    case APPROVED = 'approved'; // The payment has been approved and the funds are transferred from the customer's account to yours
+
     public static function toArray() :array
     {
         return [

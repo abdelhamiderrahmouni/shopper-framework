@@ -91,16 +91,67 @@
                     </div>
                 </div>
                 <div class="mt-5 md:mt-0 md:col-span-2">
-                    <div class="shadow rounded-md overflow-hidden">
+                    <div class="shadow rounded-md">
                         <div class="px-4 py-5 sm:p-6 space-y-4 bg-white dark:bg-secondary-800">
                             <div class="grid gap-4 sm:grid-cols-6 sm:gap-6">
                                 <x-shopper::forms.group :label="__('shopper::layout.forms.label.public_key')" for="public_key" class="sm:col-span-3">
-                                    <x-shopper::forms.input wire:model.lazy="paypal_key" id="public_key" type="text" autocomplete="off" />
+                                    <x-shopper::forms.input wire:model.lazy="paypal_client_id" id="public_key" type="text" autocomplete="off" />
                                 </x-shopper::forms.group>
 
                                 <x-shopper::forms.group :label="__('shopper::layout.forms.label.secret_key')" for="secret_key" class="sm:col-span-3">
-                                    <x-shopper::forms.input wire:model.lazy="paypal_secret" id="secret_key" type="text" />
+                                    <x-shopper::forms.input wire:model.lazy="paypal_client_secret" id="secret_key" type="text" />
                                 </x-shopper::forms.group>
+
+                                <div class="col-span-6">
+                                    <x-shopper::forms.group :label="__('shopper::layout.forms.label.currency')"
+                                                            for="paypal_currency"
+                                                            wire:ignore>
+                                        <select
+                                            wire:model.defer="paypal_currency"
+                                            id="paypal_currency"
+                                            x-data="{}"
+                                            x-init="function() { tomSelect($el, {}) }"
+                                            autocomplete="off"
+                                        >
+                                            @foreach($paypal_currencies as $code => $name)
+                                                <option value="{{ $code }}" @selected($paypal_currency === $code)>
+                                                    {{ __($name) }} ({{ $code }})
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </x-shopper::forms.group>
+                                </div>
+
+                                @if(shopper_currency() !== $paypal_currency)
+                                    <div class="col-span-6">
+                                        <div wire:ignore>
+                                            <label for="currency_conversion_rate" class="block text-sm font-medium leading-5 text-secondary-700 dark:text-secondary-300">
+                                                {{ __('shopper::layout.forms.label.currency_conversion_rate') }}
+                                            </label>
+
+                                            <x-input type="number" id="currency_conversion_rate" step="0.01" wire:model.defer="paypal_currency_conversion_rate" />
+                                        </div>
+                                        <p class="text-sm text-secondary-500 dark:text-secondary-400">
+                                            {{ __('shopper::layout.forms.help_text.currency_conversion_rate_description', ['first' => $paypal_currency, 'second' => shopper_currency()]) }}
+                                        </p>
+                                    </div>
+                                @endif
+
+                                <!-- paypal test mode -->
+                                <div class="col-span-6">
+                                    <div wire:ignore class="w-full flex flex-col gap-2">
+                                        <label for="paypal_test_mode" class="block text-sm font-medium leading-5 text-secondary-700 dark:text-secondary-300">
+                                            {{ __('shopper::layout.forms.label.paypal_test_mode') }}
+                                        </label>
+                                        <span id="paypal_test_mode" x-data="{ on: @entangle('paypal_test_mode').defer }" role="checkbox" tabindex="0" @click="on = !on" @keydown.space.prevent="on = !on" :aria-checked="on.toString()" aria-checked="false" @focus="focused = true" @blur="focused = false" class="group relative inline-flex items-center justify-center shrink-0 h-5 w-10 cursor-pointer focus:outline-none">
+                                            <span aria-hidden="true" :class="{ 'bg-primary-600': on, 'bg-secondary-200 dark:bg-secondary-700': !on }" class="absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200 bg-secondary-200"></span>
+                                            <span aria-hidden="true" :class="{ 'translate-x-5': on, 'translate-x-0': !on }" class="absolute left-0 inline-block h-5 w-5 border border-secondary-200 rounded-full bg-white shadow transform group-focus:shadow-outline group-focus:border-primary-300 transition-transform ease-in-out duration-200 translate-x-0"></span>
+                                        </span>
+                                        <p class="text-sm text-secondary-500 dark:text-secondary-400">
+                                            {{ __('shopper::layout.forms.help_text.paypal_test_mode_description') }}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
