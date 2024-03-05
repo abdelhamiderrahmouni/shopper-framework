@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Shopper\Framework\Http\Livewire\Tables;
 
+use Carbon\Carbon;
 use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
@@ -42,6 +43,7 @@ class ProductsTable extends DataTableComponent
                 'delete' => __('shopper::layout.forms.actions.delete'),
                 'activate' => __('shopper::layout.forms.actions.activate'),
                 'deactivate' => __('shopper::layout.forms.actions.disabled'),
+                'replicate' => __('Replicate'),
             ]);
     }
 
@@ -83,6 +85,38 @@ class ProductsTable extends DataTableComponent
     public function activate(): void
     {
         $this->setVisibility();
+    }
+
+    /**
+     * @throws GeneralException
+     */
+    public function replicate(): void
+    {
+        foreach(array_unique($this->getSelected()) as $item)
+        {
+            // These are strings since they came from an HTML element
+            $product = (new ProductRepository())->getById((int) $item);
+            $newProduct = $product->replicate();
+
+            $copyNumber = $this->getCopyNumber($newProduct->name . '-copy-');
+            $newProduct->name = $newProduct->name . '-copy-' . $copyNumber;
+            $newProduct->slug = $newProduct->slug . '-copy-' . $copyNumber;
+            $newProduct->created_at = Carbon::now();
+            $newProduct->save();
+
+            $mediaItem = $product->getMedia(config('shopper.system.storage.disks.uploads'))->first();
+            $mediaItem->copy($newProduct, config('shopper.system.storage.disks.uploads'));
+        }
+
+        $this->clearSelected();
+    }
+
+    private function getCopyNumber($name): int
+    {
+        return (new ProductRepository())
+                ->makeModel()
+                ->where('name', 'like', '%' . $name . '%')
+                ->count() + 1;
     }
 
     /**

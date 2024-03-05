@@ -27,6 +27,7 @@ class CategoriesTable extends DataTableComponent
                 'deleteSelected' => __('shopper::layout.forms.actions.delete'),
                 'enabled' => __('shopper::layout.forms.actions.enable'),
                 'disabled' => __('shopper::layout.forms.actions.disable'),
+                'duplicate' => __('shopper::layout.forms.actions.duplicate'),
             ])
             ->setTdAttributes(function (Views\Column $column) {
                 if ($column->isField('slug')) {
@@ -110,6 +111,39 @@ class CategoriesTable extends DataTableComponent
         }
 
         $this->clearSelected();
+    }
+
+    /**
+     * @throws GeneralException
+     */
+    public function duplicate(): void
+    {
+        foreach(array_unique($this->getSelected()) as $item)
+        {
+            // These are strings since they came from an HTML element
+            $category = (new CategoryRepository())->getById((int) $item);
+            $newCategory = $category->replicate();
+
+            $copyNumber = $this->getCopyNumber($newCategory->name . '-copy-');
+            $newCategory->name = $newCategory->name . '-copy-' . $copyNumber;
+            $newCategory->slug = $newCategory->slug . '-copy-' . $copyNumber;
+            $newCategory->created_at = now();
+            $newCategory->updated_at = now();
+            $newCategory->save();
+
+            $mediaItems = $category->getMedia(config('shopper.system.storage.disks.uploads'));
+            $mediaItems->each(fn($mediaItem) => $mediaItem->copy($newCategory, config('shopper.system.storage.disks.uploads')));
+        }
+
+        $this->clearSelected();
+    }
+
+    private function getCopyNumber($name): int
+    {
+        return (new CategoryRepository())
+                ->makeModel()
+                ->where('name', 'like', '%' . $name . '%')
+                ->count() + 1;
     }
 
     public function filters(): array

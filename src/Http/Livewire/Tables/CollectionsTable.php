@@ -24,6 +24,7 @@ class CollectionsTable extends DataTableComponent
             ->setDefaultSort('name')
             ->setBulkActions([
                 'deleteSelected' => __('shopper::layout.forms.actions.delete'),
+                'duplicate' => __('shopper::layout.forms.actions.duplicate'),
             ]);
     }
 
@@ -49,6 +50,39 @@ class CollectionsTable extends DataTableComponent
         $this->selected = [];
 
         $this->clearSelected();
+    }
+
+    /**
+     * @throws GeneralException
+     */
+    public function duplicate(): void
+    {
+        foreach(array_unique($this->getSelected()) as $item)
+        {
+            // These are strings since they came from an HTML element
+            $collection = (new CollectionRepository())->getById((int) $item);
+            $newCollection = $collection->replicate();
+
+            $copyNumber = $this->getCopyNumber($newCollection->name . '-copy-');
+            $newCollection->name = $newCollection->name . '-copy-' . $copyNumber;
+            $newCollection->slug = $newCollection->slug . '-copy-' . $copyNumber;
+            $newCollection->created_at = now();
+            $newCollection->updated_at = now();
+            $newCollection->save();
+
+            $mediaItems = $collection->getMedia(config('shopper.system.storage.disks.uploads'));
+            $mediaItems->each(fn($mediaItem) => $mediaItem->copy($newCollection, config('shopper.system.storage.disks.uploads')));
+        }
+
+        $this->clearSelected();
+    }
+
+    private function getCopyNumber($name): int
+    {
+        return (new CollectionRepository())
+                ->makeModel()
+                ->where('name', 'like', '%' . $name . '%')
+                ->count() + 1;
     }
 
     public function filters(): array

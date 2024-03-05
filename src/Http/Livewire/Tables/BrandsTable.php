@@ -26,6 +26,7 @@ class BrandsTable extends DataTableComponent
                 'deleteSelected' => __('shopper::layout.forms.actions.delete'),
                 'enabled' => __('shopper::layout.forms.actions.enable'),
                 'disabled' => __('shopper::layout.forms.actions.disable'),
+                'duplicate' => __('shopper::layout.forms.actions.duplicate'),
             ])
             ->setTdAttributes(function (Views\Column $column) {
                 if ($column->isField('slug')) {
@@ -108,6 +109,39 @@ class BrandsTable extends DataTableComponent
         }
 
         $this->clearSelected();
+    }
+
+    /**
+     * @throws GeneralException
+     */
+    public function duplicate(): void
+    {
+        foreach(array_unique($this->getSelected()) as $item)
+        {
+            // These are strings since they came from an HTML element
+            $brand = (new BrandRepository())->getById((int) $item);
+            $newBrand = $brand->replicate();
+
+            $copyNumber = $this->getCopyNumber($newBrand->name . '-copy-');
+            $newBrand->name = $newBrand->name . '-copy-' . $copyNumber;
+            $newBrand->slug = $newBrand->slug . '-copy-' . $copyNumber;
+            $newBrand->created_at = now();
+            $newBrand->updated_at = now();
+            $newBrand->save();
+
+            $mediaItems = $brand->getMedia(config('shopper.system.storage.disks.uploads'));
+            $mediaItems->each(fn($mediaItem) => $mediaItem->copy($newBrand, config('shopper.system.storage.disks.uploads')));
+        }
+
+        $this->clearSelected();
+    }
+
+    private function getCopyNumber($name): int
+    {
+        return (new BrandRepository())
+                ->makeModel()
+                ->where('name', 'like', '%' . $name . '%')
+                ->count() + 1;
     }
 
     public function columns(): array

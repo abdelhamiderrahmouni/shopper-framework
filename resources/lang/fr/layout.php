@@ -184,6 +184,7 @@ return [
             'create' => 'Créer',
             'upload' => 'Télécharger',
             'verified' => 'Vérifié',
+            'duplicate' => 'Dupliquer',
         ],
 
         'error' => 'Votre soumission contient des erreurs. Veuillez réessayer',
