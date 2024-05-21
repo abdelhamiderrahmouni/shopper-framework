@@ -44,7 +44,7 @@ class Attributes extends Component
 
     public function removeProductAttributeValue(int $id): void
     {
-        ProductAttributeValue::query()->find($id)->delete();
+        ProductAttributeValue::query()->find($id)?->delete();
 
         Notification::make()
             ->title(__('shopper::pages/products.attributes.session.delete_value'))
@@ -62,7 +62,7 @@ class Attributes extends Component
      */
     public function removeProductAttribute(int $id): void
     {
-        ProductAttribute::query()->find($id)->delete();
+        ProductAttribute::query()->find($id)?->delete();
 
         $this->productAttributes = $this->getProductAttributes();
         $this->attributes = $this->getAttributes();

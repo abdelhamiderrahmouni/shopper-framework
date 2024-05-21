@@ -112,6 +112,6 @@ class Review extends Model
 
     public function deleteRating(int $id): ?bool
     {
-        return static::query()->find($id)->delete();
+        return static::query()->find($id)?->delete();
     }
 }

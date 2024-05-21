@@ -19,7 +19,7 @@ class DeleteDiscount extends ModalComponent
 
     public function delete(): void
     {
-        Discount::query()->find($this->discountID)->delete();
+        Discount::query()->find($this->discountID)?->delete();
 
         session()->flash('success', __('shopper::pages/discounts.modals.remove.success_message'));
 

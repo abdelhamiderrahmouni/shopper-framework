@@ -49,7 +49,7 @@ class AttributesTable extends DataTableComponent
     public function deleteSelected(): void
     {
         if (count($this->getSelected()) > 0) {
-            Attribute::query()->whereIn('id', $this->getSelected())->delete();
+            Attribute::query()->whereIn('id', $this->getSelected())?->delete();
 
             Notification::make()
                 ->title(__('shopper::components.tables.status.delete'))

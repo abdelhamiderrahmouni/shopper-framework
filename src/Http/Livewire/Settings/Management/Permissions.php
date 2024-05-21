@@ -46,7 +46,7 @@ class Permissions extends Component
 
     public function removePermission(int $id): void
     {
-        Permission::query()->find($id)->delete();
+        Permission::query()->find($id)?->delete();
 
         Notification::make()
             ->title(__('Deleted'))

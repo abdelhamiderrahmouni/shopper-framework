@@ -20,7 +20,7 @@ class Management extends Component
 
     public function removeUser(int $id): void
     {
-        (new UserRepository())->getById($id)->delete();
+        (new UserRepository())->getById($id)?->delete();
 
         $this->dispatchBrowserEvent('user-removed');
 

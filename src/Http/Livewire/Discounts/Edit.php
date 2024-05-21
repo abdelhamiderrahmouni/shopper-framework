@@ -140,7 +140,7 @@ class Edit extends AbstractBaseComponent
                 ]);
             }
         } else {
-            $this->discount->items()->where('condition', 'apply_to')->delete();
+            $this->discount->items()->where('condition', 'apply_to')?->delete();
         }
 
         if ($this->eligibility === 'customers') {
@@ -159,7 +159,7 @@ class Edit extends AbstractBaseComponent
                 ]);
             }
         } else {
-            $this->discount->items()->where('condition', 'eligibility')->delete();
+            $this->discount->items()->where('condition', 'eligibility')?->delete();
         }
 
         session()->flash('success', __('shopper::pages/discounts.update_message', ['code' => $this->code]));

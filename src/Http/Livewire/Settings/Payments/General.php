@@ -33,7 +33,7 @@ class General extends Component
 
     public function removePayment(int $id): void
     {
-        PaymentMethod::query()->find($id)->delete();
+        PaymentMethod::query()->find($id)?->delete();
 
         $this->dispatchBrowserEvent('item-update');
 

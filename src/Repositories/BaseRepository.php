@@ -108,7 +108,7 @@ abstract class BaseRepository implements RepositoryContract
     {
         $this->unsetClauses();
 
-        return $this->getById($id)->delete();
+        return $this->getById($id)?->delete();
     }
 
     public function deleteMultipleById(array $ids): int

@@ -49,7 +49,7 @@ class OrdersTable extends DataTableComponent
     public function archived(): void
     {
         if (count($this->getSelected()) > 0) {
-            Order::query()->whereIn('id', $this->getSelected())->delete();
+            Order::query()->whereIn('id', $this->getSelected())?->delete();
 
             Notification::make()
                 ->title(__('shopper::layout.forms.actions.archived'))

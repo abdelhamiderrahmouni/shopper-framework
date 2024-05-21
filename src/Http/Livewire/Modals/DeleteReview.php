@@ -19,7 +19,7 @@ class DeleteReview extends ModalComponent
 
     public function delete(): void
     {
-        Review::query()->find($this->reviewID)->delete();
+        Review::query()->find($this->reviewID)?->delete();
 
         session()->flash('success', __('shopper::pages/products.reviews.modal.success_message'));
 

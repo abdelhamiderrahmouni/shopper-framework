@@ -19,7 +19,7 @@ class DeleteCustomer extends ModalComponent
 
     public function delete(): void
     {
-        (new UserRepository())->getById($this->customerId)->delete();
+        (new UserRepository())->getById($this->customerId)?->delete();
 
         session()->flash('success', __('shopper::pages/customers.modal.success_message'));
 

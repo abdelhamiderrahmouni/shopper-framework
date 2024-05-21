@@ -37,7 +37,7 @@ class Values extends Component
 
     public function removeValue(int $id): void
     {
-        AttributeValue::query()->find($id)->delete();
+        AttributeValue::query()->find($id)?->delete();
 
         $this->emitSelf('updateValues');
 

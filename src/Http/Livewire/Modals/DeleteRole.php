@@ -19,7 +19,7 @@ class DeleteRole extends ModalComponent
 
     public function delete(): void
     {
-        Role::query()->find($this->roleId)->delete();
+        Role::query()->find($this->roleId)?->delete();
 
         session()->flash('success', __('Role deleted successfully.'));
 

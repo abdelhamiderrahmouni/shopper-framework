@@ -22,7 +22,7 @@ class DeleteInventory extends ModalComponent
 
     public function delete(): void
     {
-        Inventory::query()->find($this->inventoryId)->delete();
+        Inventory::query()->find($this->inventoryId)?->delete();
 
         session()->flash('success', __('Inventory Successfully removed.'));
 

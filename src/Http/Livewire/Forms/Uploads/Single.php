@@ -41,7 +41,7 @@ class Single extends Component
 
     public function removeMedia(int $id): void
     {
-        Media::find($id)->delete();
+        Media::find($id)?->delete();
 
         $this->media = null;
 
