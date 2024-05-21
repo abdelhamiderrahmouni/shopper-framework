@@ -48,7 +48,7 @@
     @if(collect($files)->isNotEmpty())
         <ul class="mt-4 grid grid-cols-6 gap-4">
             @foreach($files as $file)
-                <li class="relative group col-span-1 h-20 border border-secondary-300 dark:border-secondary-700 rounded-md overflow-hidden">
+                <li class="relative group col-span-1 h-20 border border-secondary-300 dark:border-secondary-700 rounded-md overflow-hidden" wire:key="{{ 'file-' . $loop->iteration }}">
                     <img class="h-full w-full object-cover" src="{{ $file->temporaryUrl() }}" alt="" />
                     <div class="absolute h-full w-full flex items-center justify-center opacity-0 hover:opacity-100 focus-within:opacity-100 inset-0 bg-secondary-800 bg-opacity-75 transition duration-150 ease-in-out">
                         <button wire:click="removeUpload('files', '{{ $file->getFilename() }}')" type="button" class="inline-flex p-2 border-2 border-transparent text-white rounded-full hover:text-secondary-100 focus:outline-none focus:text-secondary-100 focus:bg-secondary-600 transition duration-150 ease-in-out">
@@ -63,6 +63,6 @@
     @endif
 
     @error('files.*')
-        <p class="mt-1 text-sm text-danger-500">{{ $message }}</p>
+    <p class="mt-1 text-sm text-danger-500">{{ $message }}</p>
     @enderror
 </div>

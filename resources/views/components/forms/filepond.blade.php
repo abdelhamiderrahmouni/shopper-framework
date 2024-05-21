@@ -2,8 +2,8 @@
 
 <div>
     <div wire:ignore
-        x-data
-        x-init="
+         x-data
+         x-init="
           $nextTick(() => {
             const post = FilePond.create($refs.input);
             post.setOptions({
@@ -32,7 +32,7 @@
     @if(collect($images)->isNotEmpty())
         <div class="grid grid-cols-2 gap-4 mt-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
             @foreach($images as $image)
-                <div class="relative flex flex-col items-center overflow-hidden h-24 text-center bg-secondary-100 border rounded-md select-none dark:bg-secondary-700 dark:border-secondary-700">
+                <div class="relative flex flex-col items-center overflow-hidden h-24 text-center bg-secondary-100 border rounded-md select-none dark:bg-secondary-700 dark:border-secondary-700" wire:key="{{ 'image-' . $image->id }}">
                     <button class="absolute top-0 right-0 z-50 p-1 bg-white rounded-bl focus:outline-none dark:bg-secondary-800" type="button" wire:click="removeMedia({{ $image->id }})">
                         <x-heroicon-o-trash class="w-5 h-5 text-secondary-500 dark:text-secondary-400" />
                     </button>
@@ -49,3 +49,4 @@
         </div>
     @endif
 </div>
+
