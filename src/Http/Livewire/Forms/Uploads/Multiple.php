@@ -18,6 +18,8 @@ class Multiple extends Component
 
     public $images = [];
 
+    public $mimeTypes = 'image/*,video/*';
+
     public string $inputId;
 
     protected $listeners = [
@@ -25,12 +27,13 @@ class Multiple extends Component
     ];
 
     protected $rules = [
-        'files.*' => 'nullable|max:5120',
+        'files.*' => 'nullable|max:15360',
     ];
 
-    public function mount($images = []): void
+    public function mount(array $images = [], string $mimeTypes = 'image/*,video/*'): void
     {
         $this->images = $images;
+        $this->mimeTypes = $mimeTypes;
         $this->inputId = 'files-upload-' . uniqid();
     }
 
@@ -47,7 +50,7 @@ class Multiple extends Component
 
     public function removeMedia(int $id): void
     {
-        Media::query()->find($id)->delete();
+        Media::query()->find($id)?->delete();
 
         $this->emitSelf('fileDeleted');
 

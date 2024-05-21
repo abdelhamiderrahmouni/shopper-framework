@@ -42,7 +42,8 @@ class Edit extends AbstractBaseComponent
 
     protected $listeners = [
         'trix:valueUpdated' => 'onTrixValueUpdate',
-        'mediaDeleted',
+        'mediaDeleted' => 'getImages',
+        'mediaReordered' => 'getImages',
     ];
 
     public function mount($product, string $currency): void
@@ -63,7 +64,8 @@ class Edit extends AbstractBaseComponent
         $this->category_ids = $product->categories->pluck('id')->toArray();
         $this->selectedBrand = $product->brand_id ? [$product->brand_id] : [];
         $this->currency = $currency;
-        $this->images = $product->getMedia(config('shopper.system.storage.disks.uploads'));
+
+        $this->getImages();
     }
 
     public function onTrixValueUpdate(string $value): void
@@ -71,9 +73,8 @@ class Edit extends AbstractBaseComponent
         $this->description = $value;
     }
 
-    public function mediaDeleted(): void
-    {
-        $this->images = $this->product->getMedia(config('shopper.system.storage.disks.uploads'));
+    public function getImages(){
+        $this->images = $this->product->getMedia(config('shopper.system.storage.disks.uploads'))->sortBy('order_column');
     }
 
     public function rules(): array

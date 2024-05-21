@@ -1,8 +1,7 @@
 @props(['images' => []])
 
 <div>
-    <div
-        wire:ignore
+    <div wire:ignore
         x-data
         x-init="
           $nextTick(() => {
@@ -12,7 +11,7 @@
                 allowImagePreview: {{ $attributes->has('allowFileTypeValidation') ? 'true' : 'false' }},
                 imagePreviewMaxHeight: {{ $attributes->has('imagePreviewMaxHeight') ? $attributes->get('imagePreviewMaxHeight') : '256' }},
                 allowFileTypeValidation: {{ $attributes->has('allowFileTypeValidation') ? 'true' : 'false' }},
-                acceptedFileTypes: {!! $attributes->get('acceptedFileTypes') ?? 'null' !!},
+                acceptedFileTypes: '{!! $attributes->get('acceptedFileTypes') ?? 'null' !!}',
                 allowFileSizeValidation: {{ $attributes->has('allowFileSizeValidation') ? 'true' : 'false' }},
                 maxFileSize: {!! $attributes->has('maxFileSize') ? "'" . $attributes->get('maxFileSize') . "'" : 'null' !!},
                 server: {
@@ -25,8 +24,8 @@
                 },
             });
           });
-       "
-    >
+       ">
+
         <input type="file" x-ref="{{ $attributes->get('ref') ?? 'input' }}" />
     </div>
 

@@ -24,8 +24,9 @@
                         allowImagePreview
                         imagePreviewMaxHeight="200"
                         allowFileTypeValidation
+                        acceptedFileTypes="image/jpeg,image/png,image/jpg,video/mp4"
                         allowFileSizeValidation
-                        maxFileSize="5mb"
+                        maxFileSize="15mb"
                         :images="$images"
                     />
                     @error('files.*')

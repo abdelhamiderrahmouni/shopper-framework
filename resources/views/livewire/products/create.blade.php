@@ -47,7 +47,7 @@
                     {{ __('shopper::words.media') }}
                 </h4>
                 <div class="mt-4">
-                    <livewire:shopper-forms.uploads.multiple />
+                    <livewire:shopper-forms.uploads.multiple mime-types="images/jpeg,images/png,video/mp4" />
                 </div>
             </div>
             <div class="relative bg-white dark:bg-secondary-800 rounded-lg shadow pt-4 sm:pt-5 overflow-hidden">

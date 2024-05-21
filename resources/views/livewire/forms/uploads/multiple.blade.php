@@ -34,7 +34,7 @@
         <input
             class="absolute inset-0 z-50 w-full h-full outline-none opacity-0 cursor-pointer"
             type="file"
-            accept="image/*"
+            accept="{{ $mimeTypes }}"
             multiple
             id="{{ $inputId }}"
             wire:model="files"
