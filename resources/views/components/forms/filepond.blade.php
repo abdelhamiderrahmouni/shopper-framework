@@ -1,9 +1,6 @@
 @props(['images' => []])
 
 <div>
-    <script type="module">
-        import Sortable from 'https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/+esm'
-    </script>
     <div wire:ignore
          x-data
          x-init="
@@ -35,24 +32,21 @@
     @if(collect($images)->isNotEmpty())
         <div class="grid grid-cols-2 gap-4 mt-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
              x-data
-             x-init="$nextTick(() => {
-                 let options = { animation: 100 };
+             x-init="() => {
+                 let options = {};
 
-                Sortable.create($el, {
+                 window.Sortable.create($el, {
                     sort: true,
-                    ...options,
-                    draggable: '[wire\\:sortable\\.item]',
+                    animation: 100,
                     handle: $el.querySelector('[wire\\:sortable\\.handle]') ? '[wire\\:sortable\\.handle]' : null,
                     dataIdAttr: 'wire:sortable.item',
                     group: {
                         pull: false,
                         put: false,
-                        ...options.group,
                         name: 'OrderableGallery',
                     },
                     store: {
-                        ...options.store,
-                        set: function (sortable) {
+                         set: function (sortable) {
                             let items = sortable.toArray().map((value, index) => {
                                 return {
                                     order: index + 1,
@@ -60,11 +54,12 @@
                                 };
                             });
 
-                            $wire.updateImagesOrder(items);
+                            $wire.call('updateImagesOrder', items);
                         },
                     },
+
                 });
-             })">
+             }">
             @foreach($images as $image)
                 <div wire:sortable.handle wire:sortable.item="{{ $image->id }}" wire:key="{{ 'image-' . $image->id }}">
                     <div class="relative flex flex-col items-center overflow-hidden h-24 text-center bg-secondary-100 border rounded-md select-none dark:bg-secondary-700 dark:border-secondary-700">
