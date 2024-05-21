@@ -30,9 +30,9 @@
                         :images="$images"
                     />
                     @error('files.*')
-                        <p class="mt-2 text-sm text-danger-500">
-                            {{ $message }}
-                        </p>
+                    <p class="mt-2 text-sm text-danger-500">
+                        {{ $message }}
+                    </p>
                     @enderror
                 </div>
             </div>
