@@ -26,7 +26,7 @@
                         </span>
                         <div class="relative z-0 inline-flex items-center leading-5 text-secondary-700 dark:text-secondary-300">
                             <span class="block mr-4 text-sm font-medium">{{ __('shopper::pages/products.quantity_available') }}</span>
-                            <x-stock-badge :stock="$product->stock" />
+                            <x-shopper::stock-badge :stock="$product->stock" />
                         </div>
                     </div>
                 @endif
