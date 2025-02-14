@@ -77,7 +77,7 @@ class Create extends AbstractBaseComponent
     {
         $this->validate($this->rules());
 
-        $product = (new ProductRepository())->create([
+        $product = (new ProductRepository)->create([
             'name' => $this->name,
             'slug' => $this->name,
             'sku' => $this->sku,
@@ -149,19 +149,19 @@ class Create extends AbstractBaseComponent
     public function render(): View
     {
         return view('shopper::livewire.products.create', [
-            'brands' => (new BrandRepository())
+            'brands' => (new BrandRepository)
                 ->makeModel()
                 ->scopes('enabled')
                 ->select('name', 'id')
                 ->get(),
-            'categories' => (new CategoryRepository())
+            'categories' => (new CategoryRepository)
                 ->makeModel()
                 ->scopes('enabled')
                 ->tree()
                 ->orderBy('name')
                 ->get()
                 ->toTree(),
-            'collections' => (new CollectionRepository())->with('media')->get(['name', 'id']),
+            'collections' => (new CollectionRepository)->with('media')->get(['name', 'id']),
             'inventories' => Inventory::query()->get(['name', 'id']),
             'currency' => shopper_currency(),
             'barcodeImage' => $this->barcode

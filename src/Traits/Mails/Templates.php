@@ -249,7 +249,7 @@ trait Templates
                 if (self::handleMailableViewDataArgs($namespace) !== null) {
                     $instance = self::handleMailableViewDataArgs($namespace);
                 } else {
-                    $instance = new $namespace();
+                    $instance = new $namespace;
                 }
             }
 

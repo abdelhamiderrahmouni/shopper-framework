@@ -64,7 +64,7 @@ class Create extends Component
     {
         $this->validate($this->rules());
 
-        $collection = (new CollectionRepository())->create([
+        $collection = (new CollectionRepository)->create([
             'name' => $this->name,
             'slug' => $this->name,
             'description' => $this->description,

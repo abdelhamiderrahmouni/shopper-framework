@@ -23,13 +23,11 @@ class Thanks
         '    <options=bold>https://github.com/sponsors/Sense</>',
     ];
 
-    public function __construct(private readonly OutputInterface $output)
-    {
-    }
+    public function __construct(private readonly OutputInterface $output) {}
 
     public function __invoke(): void
     {
-        $wantsToSupport = (new SymfonyQuestionHelper())->ask(
+        $wantsToSupport = (new SymfonyQuestionHelper)->ask(
             new ArrayInput([]),
             $this->output,
             new ConfirmationQuestion(

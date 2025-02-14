@@ -28,7 +28,7 @@ class DiscountController extends ShopperBaseController
         $this->authorize('edit_discounts');
 
         return view('shopper::pages.discounts.edit', [
-            'discount' => (new DiscountRepository())->getById($id),
+            'discount' => (new DiscountRepository)->getById($id),
         ]);
     }
 }

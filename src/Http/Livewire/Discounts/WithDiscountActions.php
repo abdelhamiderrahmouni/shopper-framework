@@ -116,7 +116,7 @@ trait WithDiscountActions
             unset($this->selectedProducts[$key]);
         }
 
-        $this->products = (new ProductRepository())
+        $this->products = (new ProductRepository)
             ->makeModel()
             ->whereIn('id', $this->selectedProducts)
             ->get();
@@ -128,7 +128,7 @@ trait WithDiscountActions
             unset($this->selectedCustomers[$key]);
         }
 
-        $this->customers = (new UserRepository())
+        $this->customers = (new UserRepository)
             ->makeModel()
             ->whereIn('id', $this->selectedCustomers)
             ->get();
@@ -142,7 +142,7 @@ trait WithDiscountActions
             $this->selectedProducts = $selectedProducts;
         }
 
-        $this->products = (new ProductRepository())
+        $this->products = (new ProductRepository)
             ->makeModel()
             ->whereIn('id', $this->selectedProducts)
             ->get();
@@ -156,7 +156,7 @@ trait WithDiscountActions
             $this->selectedCustomers = $selectedCustomers;
         }
 
-        $this->customers = (new UserRepository())
+        $this->customers = (new UserRepository)
             ->makeModel()
             ->whereIn('id', $this->selectedCustomers)
             ->get();

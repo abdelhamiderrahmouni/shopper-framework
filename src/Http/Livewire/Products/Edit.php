@@ -24,13 +24,13 @@ class Edit extends Component
     public function mount($product): void
     {
         $this->product = $product;
-        $this->inventories = $inventories = (new InventoryRepository())->get();
+        $this->inventories = $inventories = (new InventoryRepository)->get();
         $this->inventory = $inventories->firstWhere('is_default', true)->id;
     }
 
     public function productHasUpdated(int $id): void
     {
-        $this->product = (new ProductRepository())->getById($id);
+        $this->product = (new ProductRepository)->getById($id);
     }
 
     public function render(): View

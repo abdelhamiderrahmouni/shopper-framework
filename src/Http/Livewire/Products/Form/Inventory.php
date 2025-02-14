@@ -57,7 +57,7 @@ class Inventory extends Component
             ],
         ]);
 
-        (new ProductRepository())->getById($this->product->id)->update([
+        (new ProductRepository)->getById($this->product->id)->update([
             'sku' => $this->sku ?? null,
             'barcode' => $this->barcode ?? null,
             'security_stock' => $this->securityStock ?? null,
@@ -73,12 +73,12 @@ class Inventory extends Component
     public function render(): View
     {
         return view('shopper::livewire.products.forms.form-inventory', [
-            'currentStock' => (new InventoryHistoryRepository())
+            'currentStock' => (new InventoryHistoryRepository)
                 ->where('inventory_id', $this->inventory)
                 ->where('stockable_id', $this->product->id)
                 ->get()
                 ->sum('quantity'),
-            'histories' => (new InventoryHistoryRepository())
+            'histories' => (new InventoryHistoryRepository)
                 ->where('inventory_id', $this->inventory)
                 ->where('stockable_id', $this->product->id)
                 ->orderBy('created_at', 'desc')

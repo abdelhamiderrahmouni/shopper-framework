@@ -52,7 +52,7 @@ class CustomersTable extends DataTableComponent
     public function verified(): void
     {
         if (count($this->getSelected()) > 0) {
-            (new UserRepository())->makeModel()
+            (new UserRepository)->makeModel()
                 ->newQuery()
                 ->whereIn('id', $this->getSelected())
                 ->update(['email_verified_at' => now()]);
@@ -75,7 +75,7 @@ class CustomersTable extends DataTableComponent
     public function delete(): void
     {
         if (count($this->getSelected()) > 0) {
-            (new UserRepository())->makeModel()
+            (new UserRepository)->makeModel()
                 ->newQuery()
                 ->whereIn('id', $this->getSelected())
                 ->delete();
@@ -117,7 +117,7 @@ class CustomersTable extends DataTableComponent
      */
     public function builder(): Builder
     {
-        return (new UserRepository())->makeModel()->newQuery()
+        return (new UserRepository)->makeModel()->newQuery()
             ->whereHas('roles', fn (Builder $query) => $query->where('name', config('shopper.system.users.default_role')))
             ->when($this->getAppliedFilterWithValue('search'), fn (Builder $query, $term) => $query->research($term));
     }

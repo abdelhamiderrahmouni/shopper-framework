@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopper\Framework\Models\Shop;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -7,12 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Shopper\Framework\Enums\PaymentStatusEnum;
 use Shopper\Framework\Models\Shop\Order\Order;
-use Shopper\Framework\Models\Traits\HasPrice;
 use Shopper\Framework\Models\User\User;
 
 class Payment extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'order_id',
@@ -37,7 +39,7 @@ class Payment extends Model
         'order',
     ];
 
-    public function getFormattedAmountAttribute(): string|null
+    public function getFormattedAmountAttribute(): ?string
     {
         if ($this->amount) {
 

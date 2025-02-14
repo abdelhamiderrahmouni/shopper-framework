@@ -51,7 +51,7 @@ class Paypal extends Component
         'USD' => 'United States dollar',
     ];
 
-    public PaymentMethod|null $method = null;
+    public ?PaymentMethod $method = null;
 
     public bool $enabled = false;
 

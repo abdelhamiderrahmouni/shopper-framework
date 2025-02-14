@@ -61,7 +61,7 @@ class CreateAdminUser extends AbstractBaseComponent
                 'required',
                 'email',
                 Rule::unique(shopper_table('users'), 'email'),
-                new RealEmailValidator(),
+                new RealEmailValidator,
             ],
             'first_name' => 'required',
             'last_name' => 'required',
@@ -69,7 +69,7 @@ class CreateAdminUser extends AbstractBaseComponent
             'role_id' => 'required',
             'phone_number' => [
                 'nullable',
-                new Phone(),
+                new Phone,
             ],
         ];
     }
@@ -78,7 +78,7 @@ class CreateAdminUser extends AbstractBaseComponent
     {
         $this->validate($this->rules(), $this->messages());
 
-        $user = (new UserRepository())->create([
+        $user = (new UserRepository)->create([
             'email' => $this->email,
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,

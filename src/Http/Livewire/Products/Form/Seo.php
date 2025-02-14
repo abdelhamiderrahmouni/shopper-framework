@@ -47,7 +47,7 @@ class Seo extends Component
             ],
         ]);
 
-        (new ProductRepository())->getById($this->productId)->update([
+        (new ProductRepository)->getById($this->productId)->update([
             'slug' => str_slug($this->slug),
             'seo_title' => $this->seoTitle,
             'seo_description' => str_limit($this->seoDescription, 157),

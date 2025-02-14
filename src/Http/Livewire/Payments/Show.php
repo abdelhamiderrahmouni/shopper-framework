@@ -9,7 +9,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
 use Shopper\Framework\Http\Livewire\AbstractBaseComponent;
 use Shopper\Framework\Models\Shop\Payment;
-use Shopper\Framework\Repositories\Ecommerce\PaymentRepository;
 
 class Show extends AbstractBaseComponent
 {
@@ -40,7 +39,7 @@ class Show extends AbstractBaseComponent
         ];
     }
 
-    public function store(){}
+    public function store() {}
 
     public function updateStatus()
     {

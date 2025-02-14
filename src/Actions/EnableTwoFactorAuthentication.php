@@ -9,9 +9,7 @@ use Shopper\Framework\Contracts\TwoFactorAuthenticationProvider;
 
 final class EnableTwoFactorAuthentication
 {
-    public function __construct(protected TwoFactorAuthenticationProvider $provider)
-    {
-    }
+    public function __construct(protected TwoFactorAuthenticationProvider $provider) {}
 
     public function __invoke($user): void
     {

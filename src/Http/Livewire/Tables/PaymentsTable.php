@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopper\Framework\Http\Livewire\Tables;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -16,7 +18,7 @@ class PaymentsTable extends DataTableComponent
         'amount' => null,
         'payment_method' => null,
         'transaction_id' => null,
-        'payment_date' => null
+        'payment_date' => null,
     ];
 
     public function boot(): void
@@ -32,21 +34,21 @@ class PaymentsTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make("Order", "order.number")
+            Column::make('Order', 'order.number')
                 ->sortable(),
-            Column::make("User", "user.first_name")
-                ->format(fn($value, $row, Column $column) => $row->user?->first_name . ' ' . $row->user?->last_name)
+            Column::make('User', 'user.first_name')
+                ->format(fn ($value, $row, Column $column) => $row->user?->first_name . ' ' . $row->user?->last_name)
                 ->sortable(),
-            Column::make("Transaction id", "transaction_id")
+            Column::make('Transaction id', 'transaction_id')
                 ->sortable(),
-            Column::make("Amount", "amount")
-                ->format(fn($value, $row, Column $column) => $row->formatted_amount)
+            Column::make('Amount', 'amount')
+                ->format(fn ($value, $row, Column $column) => $row->formatted_amount)
                 ->sortable(),
-            Column::make("Payment method", "payment_method")
+            Column::make('Payment method', 'payment_method')
                 ->sortable(),
-            Column::make("Status", "status")
+            Column::make('Status', 'status')
                 ->sortable(),
-            Column::make("Payment date", "payment_date")
+            Column::make('Payment date', 'payment_date')
                 ->sortable(),
         ];
     }
@@ -56,7 +58,7 @@ class PaymentsTable extends DataTableComponent
      */
     public function builder(): Builder
     {
-        return (new PaymentRepository())
+        return (new PaymentRepository)
             ->makeModel()
             ->newQuery()
             ->select('*')

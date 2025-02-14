@@ -21,7 +21,7 @@ class RelatedList extends ModalComponent
 
     public function mount(int $id, array $exceptProductIds = []): void
     {
-        $this->product = (new ProductRepository())->getById($id);
+        $this->product = (new ProductRepository)->getById($id);
         $this->exceptProductIds = $exceptProductIds;
     }
 
@@ -32,7 +32,7 @@ class RelatedList extends ModalComponent
 
     public function getProductsProperty()
     {
-        return (new ProductRepository())
+        return (new ProductRepository)
             ->where('name', '%' . $this->search . '%', 'like')
             ->whereNull('parent_id')
             ->get(['name', 'price_amount', 'id'])

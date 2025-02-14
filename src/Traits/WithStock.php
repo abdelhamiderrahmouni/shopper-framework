@@ -86,7 +86,7 @@ trait WithStock
 
     public function export(): BinaryFileResponse|Response
     {
-        return (new ProductInventoryExport())
+        return (new ProductInventoryExport)
             ->forProduct($this->product->id)
             ->download('product-stock-movements.xlsx', Excel::XLSX);
     }

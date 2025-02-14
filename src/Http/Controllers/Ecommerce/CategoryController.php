@@ -29,7 +29,7 @@ class CategoryController extends ShopperBaseController
         $this->authorize('edit_categories');
 
         return view('shopper::pages.categories.edit', [
-            'category' => (new CategoryRepository())->getById($id),
+            'category' => (new CategoryRepository)->getById($id),
         ]);
     }
 }

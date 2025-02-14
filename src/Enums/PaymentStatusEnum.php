@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shopper\Framework\Enums;
 
-enum PaymentStatusEnum :string
+enum PaymentStatusEnum: string
 {
     case PENDING = 'pending'; // The payment is awaiting further action, like manual verification or fraud review.
 
@@ -16,7 +18,7 @@ enum PaymentStatusEnum :string
 
     case APPROVED = 'approved'; // The payment has been approved and the funds are transferred from the customer's account to yours
 
-    public static function toArray() :array
+    public static function toArray(): array
     {
         return [
             'pending' => 'pending',

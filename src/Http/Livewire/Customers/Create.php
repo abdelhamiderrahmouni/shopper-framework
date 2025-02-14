@@ -38,7 +38,7 @@ class Create extends AbstractBaseComponent
     {
         $this->validate($this->rules());
 
-        $customer = (new UserRepository())->create([
+        $customer = (new UserRepository)->create([
             'last_name' => $this->last_name,
             'first_name' => $this->first_name,
             'email' => $this->email,
@@ -79,7 +79,7 @@ class Create extends AbstractBaseComponent
 
     public function rules(): array
     {
-        return [...$this->addressRules(), 'email' => 'required|max:150|unique:' . shopper_table('users'), 'first_name' => 'required', 'last_name' => 'required', 'country_id' => 'required', 'street_address' => 'required', 'password' => 'required|confirmed|min:8', 'phone_number' => ['nullable', new Phone()]];
+        return [...$this->addressRules(), 'email' => 'required|max:150|unique:' . shopper_table('users'), 'first_name' => 'required', 'last_name' => 'required', 'country_id' => 'required', 'street_address' => 'required', 'password' => 'required|confirmed|min:8', 'phone_number' => ['nullable', new Phone]];
     }
 
     public function render(): View

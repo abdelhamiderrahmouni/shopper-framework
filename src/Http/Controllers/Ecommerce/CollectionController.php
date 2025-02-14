@@ -29,7 +29,7 @@ class CollectionController extends ShopperBaseController
         $this->authorize('edit_collections');
 
         return view('shopper::pages.collections.edit', [
-            'collection' => (new CollectionRepository())->getById($id),
+            'collection' => (new CollectionRepository)->getById($id),
         ]);
     }
 }

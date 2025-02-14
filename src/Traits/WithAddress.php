@@ -35,7 +35,7 @@ trait WithAddress
             'country_id' => 'required',
             'zipcode' => 'required',
             'city' => 'required',
-            'address_phone_number' => ['nullable', new Phone()],
+            'address_phone_number' => ['nullable', new Phone],
         ];
     }
 }

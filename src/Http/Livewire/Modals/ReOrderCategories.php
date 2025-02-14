@@ -13,7 +13,7 @@ class ReOrderCategories extends ModalComponent
     public function updateGroupOrder(array $items): void
     {
         foreach ($items as $item) {
-            (new CategoryRepository())
+            (new CategoryRepository)
                 ->getById($item['value'])
                 ->update(['position' => $item['order']]);
         }
@@ -26,7 +26,7 @@ class ReOrderCategories extends ModalComponent
     {
         foreach ($groups as $group) {
             foreach ($group['items'] as $item) {
-                (new CategoryRepository())
+                (new CategoryRepository)
                     ->getById($item['value'])
                     ->update([
                         'parent_id' => $group['value'],
@@ -48,7 +48,7 @@ class ReOrderCategories extends ModalComponent
     public function render(): View
     {
         return view('shopper::livewire.modals.re-order-categories', [
-            'categories' => (new CategoryRepository())
+            'categories' => (new CategoryRepository)
                 ->with('childs')
                 ->where('parent_id', null)
                 ->orderBy('position')

@@ -43,7 +43,7 @@ class Configuration extends Component
     public function store(): void
     {
         $this->validate([
-            'mail_from_address' => ['required', 'email', new RealEmailValidator()],
+            'mail_from_address' => ['required', 'email', new RealEmailValidator],
             'mail_from_name' => 'required',
         ]);
 

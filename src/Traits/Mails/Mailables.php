@@ -41,7 +41,7 @@ trait Mailables
                 return Container::getInstance()->call([self::handleMailableViewDataArgs($instance), 'build']);
             }
 
-            return Container::getInstance()->call([new $instance(), 'build']);
+            return Container::getInstance()->call([new $instance, 'build']);
         }
 
         return Container::getInstance()->make($instance);
@@ -150,7 +150,7 @@ trait Mailables
                     if (self::handleMailableViewDataArgs($mailableClass) !== null) {
                         $mailable_view_data = self::getMailableViewData(self::handleMailableViewDataArgs($mailableClass), $mailable_data);
                     } else {
-                        $mailable_view_data = self::getMailableViewData(new $mailableClass(), $mailable_data);
+                        $mailable_view_data = self::getMailableViewData(new $mailableClass, $mailable_data);
                     }
 
                     $fqcns[$i]['data'] = $mailable_data;

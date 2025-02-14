@@ -12,9 +12,7 @@ class ShopperSidebarRenderer implements SidebarRenderer
 {
     protected string $view = 'shopper::sidebar.menu';
 
-    public function __construct(protected Factory $factory)
-    {
-    }
+    public function __construct(protected Factory $factory) {}
 
     /**
      * @return \Illuminate\Contracts\View\View|void

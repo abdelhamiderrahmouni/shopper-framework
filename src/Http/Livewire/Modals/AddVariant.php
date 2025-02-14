@@ -52,7 +52,7 @@ class AddVariant extends ModalComponent
     {
         $this->validate($this->rules());
 
-        $product = (new ProductRepository())->create([
+        $product = (new ProductRepository)->create([
             'name' => $this->name,
             'slug' => $this->name,
             'sku' => $this->sku,
@@ -107,7 +107,7 @@ class AddVariant extends ModalComponent
     public function render(): View
     {
         return view('shopper::livewire.modals.add-variant', [
-            'inventories' => (new InventoryRepository())->get(),
+            'inventories' => (new InventoryRepository)->get(),
         ]);
     }
 }

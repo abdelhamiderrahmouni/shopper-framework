@@ -39,7 +39,7 @@ class ResetPasswordController extends Controller
     {
         return [
             'token' => 'required',
-            'email' => ['required', 'email', new RealEmailValidator()],
+            'email' => ['required', 'email', new RealEmailValidator],
             'password' => [
                 'required',
                 Password::min(8)->numbers()->symbols()->mixedCase(),

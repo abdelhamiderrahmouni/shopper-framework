@@ -46,7 +46,7 @@ class Variants extends Component
 
     public function remove(int $id): void
     {
-        $product = (new ProductRepository())->getById($id);
+        $product = (new ProductRepository)->getById($id);
 
         event(new ProductRemoved($product));
 
@@ -64,7 +64,7 @@ class Variants extends Component
     public function render(): View
     {
         return view('shopper::livewire.products.forms.form-variants', [
-            'variants' => (new ProductRepository())
+            'variants' => (new ProductRepository)
                 ->makeModel()
                 ->where(function (Builder $query) {
                     $query->where('name', 'like', '%' . $this->search . '%');

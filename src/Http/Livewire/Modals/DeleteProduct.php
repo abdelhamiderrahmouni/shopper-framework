@@ -26,7 +26,7 @@ class DeleteProduct extends ModalComponent
 
     public function delete(): void
     {
-        $product = (new ProductRepository())->getById($this->productId);
+        $product = (new ProductRepository)->getById($this->productId);
 
         event(new ProductRemoved($product));
 

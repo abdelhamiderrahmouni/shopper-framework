@@ -20,7 +20,7 @@ class Management extends Component
 
     public function removeUser(int $id): void
     {
-        (new UserRepository())->getById($id)?->delete();
+        (new UserRepository)->getById($id)?->delete();
 
         $this->dispatchBrowserEvent('user-removed');
 
@@ -39,7 +39,7 @@ class Management extends Component
                 ->where('name', '<>', config('shopper.system.users.default_role'))
                 ->orderBy('created_at')
                 ->get(),
-            'users' => (new UserRepository())
+            'users' => (new UserRepository)
                 ->makeModel()
                 ->whereHas('roles', function (Builder $query) {
                     $query->whereIn('name', [config('shopper.system.users.admin_role'), 'manager']);

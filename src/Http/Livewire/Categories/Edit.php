@@ -117,7 +117,7 @@ class Edit extends AbstractBaseComponent
     public function render(): View
     {
         return view('shopper::livewire.categories.edit', [
-            'categories' => (new CategoryRepository())
+            'categories' => (new CategoryRepository)
                 ->makeModel()
                 ->scopes('enabled')
                 ->tree()

@@ -48,7 +48,7 @@ class Review extends Model
 
     public function createRating(Model $reviewrateable, array $data, Model $author): self
     {
-        $rating = new static();
+        $rating = new static;
         $rating->fill([...$data, 'author_id' => $author->id, 'author_type' => $author->getMorphClass()]);
 
         $reviewrateable->ratings()->save($rating);

@@ -13,7 +13,7 @@ class Browse extends Component
     public function render(): View
     {
         return view('shopper::livewire.payments.browse', [
-            'total' => (new PaymentRepository())->count(),
+            'total' => (new PaymentRepository)->count(),
         ]);
     }
 }

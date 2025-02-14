@@ -51,7 +51,7 @@ class CategoriesTable extends DataTableComponent
     public function deleteSelected(): void
     {
         if (count($this->getSelected()) > 0) {
-            (new CategoryRepository())->makeModel()
+            (new CategoryRepository)->makeModel()
                 ->newQuery()
                 ->whereIn('id', $this->getSelected())
                 ->delete();
@@ -74,7 +74,7 @@ class CategoriesTable extends DataTableComponent
     public function enabled(): void
     {
         if (count($this->getSelected()) > 0) {
-            (new CategoryRepository())->makeModel()
+            (new CategoryRepository)->makeModel()
                 ->newQuery()
                 ->whereIn('id', $this->getSelected())
                 ->update(['is_enabled' => true]);
@@ -97,7 +97,7 @@ class CategoriesTable extends DataTableComponent
     public function disabled(): void
     {
         if (count($this->getSelected()) > 0) {
-            (new CategoryRepository())
+            (new CategoryRepository)
                 ->makeModel()
                 ->newQuery()
                 ->whereIn('id', $this->getSelected())
@@ -118,10 +118,9 @@ class CategoriesTable extends DataTableComponent
      */
     public function duplicate(): void
     {
-        foreach(array_unique($this->getSelected()) as $item)
-        {
+        foreach (array_unique($this->getSelected()) as $item) {
             // These are strings since they came from an HTML element
-            $category = (new CategoryRepository())->getById((int) $item);
+            $category = (new CategoryRepository)->getById((int) $item);
             $newCategory = $category->replicate();
 
             $copyNumber = $this->getCopyNumber($newCategory->name . '-copy-');
@@ -132,7 +131,7 @@ class CategoriesTable extends DataTableComponent
             $newCategory->save();
 
             $mediaItems = $category->getMedia(config('shopper.system.storage.disks.uploads'));
-            $mediaItems->each(fn($mediaItem) => $mediaItem->copy($newCategory, config('shopper.system.storage.disks.uploads')));
+            $mediaItems->each(fn ($mediaItem) => $mediaItem->copy($newCategory, config('shopper.system.storage.disks.uploads')));
         }
 
         $this->clearSelected();
@@ -140,10 +139,10 @@ class CategoriesTable extends DataTableComponent
 
     private function getCopyNumber($name): int
     {
-        return (new CategoryRepository())
-                ->makeModel()
-                ->where('name', 'like', '%' . $name . '%')
-                ->count() + 1;
+        return (new CategoryRepository)
+            ->makeModel()
+            ->where('name', 'like', '%' . $name . '%')
+            ->count() + 1;
     }
 
     public function filters(): array
@@ -185,7 +184,7 @@ class CategoriesTable extends DataTableComponent
      */
     public function builder(): Builder
     {
-        return (new CategoryRepository())
+        return (new CategoryRepository)
             ->makeModel()
             ->newQuery()
             ->when($this->columnSearch['name'] ?? null, fn ($query, $name) => $query->where('name', 'like', '%' . $name . '%'));

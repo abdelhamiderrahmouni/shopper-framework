@@ -11,7 +11,5 @@ final class ProductCreated
 {
     use SerializesModels;
 
-    public function __construct(public Model $product, public array $quantity)
-    {
-    }
+    public function __construct(public Model $product, public array $quantity) {}
 }

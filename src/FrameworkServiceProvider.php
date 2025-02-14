@@ -52,7 +52,7 @@ class FrameworkServiceProvider extends ServiceProvider
             $this->app['events']->listen($sideBuilder, $handler);
         }
 
-        $this->app->singleton('shopper', fn () => new Shopper());
+        $this->app->singleton('shopper', fn () => new Shopper);
         $this->app->singleton(TwoFactorAuthenticationProviderContract::class, TwoFactorAuthenticationProvider::class);
         $this->app->singleton(FailedTwoFactorLoginResponseContract::class, FailedTwoFactorLoginResponse::class);
 
@@ -76,7 +76,7 @@ class FrameworkServiceProvider extends ServiceProvider
 
     public function registerShopSettingRoute(): void
     {
-        (new Shopper())->initializeRoute();
+        (new Shopper)->initializeRoute();
     }
 
     public function registerMiddleware(Router $router): void

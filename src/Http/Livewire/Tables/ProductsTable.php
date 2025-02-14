@@ -53,7 +53,7 @@ class ProductsTable extends DataTableComponent
     public function delete(): void
     {
         if (count($this->getSelected()) > 0) {
-            (new ProductRepository())
+            (new ProductRepository)
                 ->makeModel()
                 ->newQuery()
                 ->whereIn('id', $this->getSelected())
@@ -92,10 +92,9 @@ class ProductsTable extends DataTableComponent
      */
     public function replicate(): void
     {
-        foreach(array_unique($this->getSelected()) as $item)
-        {
+        foreach (array_unique($this->getSelected()) as $item) {
             // These are strings since they came from an HTML element
-            $product = (new ProductRepository())->getById((int) $item);
+            $product = (new ProductRepository)->getById((int) $item);
             $newProduct = $product->replicate();
 
             $copyNumber = $this->getCopyNumber($newProduct->name . '-copy-');
@@ -113,10 +112,10 @@ class ProductsTable extends DataTableComponent
 
     private function getCopyNumber($name): int
     {
-        return (new ProductRepository())
-                ->makeModel()
-                ->where('name', 'like', '%' . $name . '%')
-                ->count() + 1;
+        return (new ProductRepository)
+            ->makeModel()
+            ->where('name', 'like', '%' . $name . '%')
+            ->count() + 1;
     }
 
     /**
@@ -125,7 +124,7 @@ class ProductsTable extends DataTableComponent
     public function setVisibility(bool $status = true): void
     {
         if (count($this->getSelected()) > 0) {
-            (new ProductRepository())
+            (new ProductRepository)
                 ->makeModel()
                 ->newQuery()
                 ->whereIn('id', $this->getSelected())
@@ -155,7 +154,7 @@ class ProductsTable extends DataTableComponent
                 ->filter(fn (Builder $query, $value) => $query->where('is_visible', $value === 'yes')),
             'brands' => Views\Filters\MultiSelectFilter::make(__('shopper::layout.sidebar.brands'))
                 ->options(
-                    (new BrandRepository())->makeModel()->newQuery()
+                    (new BrandRepository)->makeModel()->newQuery()
                         ->orderBy('name')
                         ->get()
                         ->keyBy('id')
@@ -200,7 +199,7 @@ class ProductsTable extends DataTableComponent
      */
     public function builder(): Builder
     {
-        return (new ProductRepository())
+        return (new ProductRepository)
             ->makeModel()
             ->newQuery()
             ->with(['brand', 'variations', 'media'])

@@ -65,7 +65,7 @@ class Edit extends AbstractBaseComponent
             'city' => 'required',
             'street_address' => 'required',
             'zipcode' => 'required',
-            'phone_number' => ['nullable', new Phone()],
+            'phone_number' => ['nullable', new Phone],
             'country_id' => 'required|exists:' . shopper_table('system_countries') . ',id',
         ];
     }

@@ -50,7 +50,7 @@ class BrandsTable extends DataTableComponent
     public function deleteSelected(): void
     {
         if (count($this->getSelected()) > 0) {
-            (new BrandRepository())->makeModel()
+            (new BrandRepository)->makeModel()
                 ->newQuery()
                 ->whereIn('id', $this->getSelected())
                 ->delete();
@@ -73,7 +73,7 @@ class BrandsTable extends DataTableComponent
     public function enabled(): void
     {
         if (count($this->getSelected()) > 0) {
-            (new BrandRepository())->makeModel()
+            (new BrandRepository)->makeModel()
                 ->newQuery()
                 ->whereIn('id', $this->getSelected())
                 ->update(['is_enabled' => true]);
@@ -96,7 +96,7 @@ class BrandsTable extends DataTableComponent
     public function disabled(): void
     {
         if (count($this->getSelected()) > 0) {
-            (new BrandRepository())->makeModel()
+            (new BrandRepository)->makeModel()
                 ->newQuery()
                 ->whereIn('id', $this->getSelected())
                 ->update(['is_enabled' => false]);
@@ -116,10 +116,9 @@ class BrandsTable extends DataTableComponent
      */
     public function duplicate(): void
     {
-        foreach(array_unique($this->getSelected()) as $item)
-        {
+        foreach (array_unique($this->getSelected()) as $item) {
             // These are strings since they came from an HTML element
-            $brand = (new BrandRepository())->getById((int) $item);
+            $brand = (new BrandRepository)->getById((int) $item);
             $newBrand = $brand->replicate();
 
             $copyNumber = $this->getCopyNumber($newBrand->name . '-copy-');
@@ -130,7 +129,7 @@ class BrandsTable extends DataTableComponent
             $newBrand->save();
 
             $mediaItems = $brand->getMedia(config('shopper.system.storage.disks.uploads'));
-            $mediaItems->each(fn($mediaItem) => $mediaItem->copy($newBrand, config('shopper.system.storage.disks.uploads')));
+            $mediaItems->each(fn ($mediaItem) => $mediaItem->copy($newBrand, config('shopper.system.storage.disks.uploads')));
         }
 
         $this->clearSelected();
@@ -138,10 +137,10 @@ class BrandsTable extends DataTableComponent
 
     private function getCopyNumber($name): int
     {
-        return (new BrandRepository())
-                ->makeModel()
-                ->where('name', 'like', '%' . $name . '%')
-                ->count() + 1;
+        return (new BrandRepository)
+            ->makeModel()
+            ->where('name', 'like', '%' . $name . '%')
+            ->count() + 1;
     }
 
     public function columns(): array
@@ -164,7 +163,7 @@ class BrandsTable extends DataTableComponent
      */
     public function builder(): Builder
     {
-        return (new BrandRepository())
+        return (new BrandRepository)
             ->makeModel()
             ->newQuery()
             ->with('media')

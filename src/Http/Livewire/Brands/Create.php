@@ -49,7 +49,7 @@ class Create extends AbstractBaseComponent
     {
         $this->validate($this->rules());
 
-        $brand = (new BrandRepository())->create([
+        $brand = (new BrandRepository)->create([
             'name' => $this->name,
             'slug' => $this->name,
             'website' => $this->website,

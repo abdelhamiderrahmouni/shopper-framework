@@ -11,7 +11,5 @@ final class ProductUpdated
 {
     use SerializesModels;
 
-    public function __construct(public Model $product)
-    {
-    }
+    public function __construct(public Model $product) {}
 }

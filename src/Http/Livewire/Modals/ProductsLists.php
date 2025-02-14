@@ -22,7 +22,7 @@ class ProductsLists extends ModalComponent
 
     public function mount(int $id, array $exceptProductIds = []): void
     {
-        $this->collection = (new CollectionRepository())->getById($id);
+        $this->collection = (new CollectionRepository)->getById($id);
         $this->exceptProductIds = $exceptProductIds;
     }
 
@@ -33,7 +33,7 @@ class ProductsLists extends ModalComponent
 
     public function getProductsProperty()
     {
-        return (new ProductRepository())
+        return (new ProductRepository)
             ->where('name', '%' . $this->search . '%', 'like')
             ->get(['name', 'price_amount', 'id'])
             ->except($this->exceptProductIds);

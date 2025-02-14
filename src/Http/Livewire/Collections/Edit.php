@@ -82,7 +82,7 @@ class Edit extends AbstractBaseComponent
     {
         $this->validate($this->rules());
 
-        (new CollectionRepository())->getById($this->collection->id)->update([
+        (new CollectionRepository)->getById($this->collection->id)->update([
             'name' => $this->name,
             'slug' => $this->name,
             'description' => $this->description,

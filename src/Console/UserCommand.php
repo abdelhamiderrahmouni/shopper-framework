@@ -48,7 +48,7 @@ final class UserCommand extends Command
         $model = config('auth.providers.users.model');
 
         try {
-            $user = tap((new $model())->forceFill($userData))->save();
+            $user = tap((new $model)->forceFill($userData))->save();
 
             $user->assignRole(config('shopper.system.users.admin_role'));
         } catch (Exception|QueryException $e) {

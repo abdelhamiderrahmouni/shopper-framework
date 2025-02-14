@@ -34,7 +34,7 @@ class CollectionsTable extends DataTableComponent
     public function deleteSelected(): void
     {
         if (count($this->getSelected()) > 0) {
-            (new CollectionRepository())
+            (new CollectionRepository)
                 ->makeModel()
                 ->newQuery()
                 ->whereIn('id', $this->getSelected())
@@ -57,10 +57,9 @@ class CollectionsTable extends DataTableComponent
      */
     public function duplicate(): void
     {
-        foreach(array_unique($this->getSelected()) as $item)
-        {
+        foreach (array_unique($this->getSelected()) as $item) {
             // These are strings since they came from an HTML element
-            $collection = (new CollectionRepository())->getById((int) $item);
+            $collection = (new CollectionRepository)->getById((int) $item);
             $newCollection = $collection->replicate();
 
             $copyNumber = $this->getCopyNumber($newCollection->name . '-copy-');
@@ -71,7 +70,7 @@ class CollectionsTable extends DataTableComponent
             $newCollection->save();
 
             $mediaItems = $collection->getMedia(config('shopper.system.storage.disks.uploads'));
-            $mediaItems->each(fn($mediaItem) => $mediaItem->copy($newCollection, config('shopper.system.storage.disks.uploads')));
+            $mediaItems->each(fn ($mediaItem) => $mediaItem->copy($newCollection, config('shopper.system.storage.disks.uploads')));
         }
 
         $this->clearSelected();
@@ -79,10 +78,10 @@ class CollectionsTable extends DataTableComponent
 
     private function getCopyNumber($name): int
     {
-        return (new CollectionRepository())
-                ->makeModel()
-                ->where('name', 'like', '%' . $name . '%')
-                ->count() + 1;
+        return (new CollectionRepository)
+            ->makeModel()
+            ->where('name', 'like', '%' . $name . '%')
+            ->count() + 1;
     }
 
     public function filters(): array
@@ -119,7 +118,7 @@ class CollectionsTable extends DataTableComponent
      */
     public function builder(): Builder
     {
-        return (new CollectionRepository())
+        return (new CollectionRepository)
             ->makeModel()
             ->newQuery()
             ->with('rules')

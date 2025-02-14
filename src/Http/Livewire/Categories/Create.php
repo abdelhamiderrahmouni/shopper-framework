@@ -53,7 +53,7 @@ class Create extends AbstractBaseComponent
     {
         $this->validate($this->rules());
 
-        $category = (new CategoryRepository())->create([
+        $category = (new CategoryRepository)->create([
             'name' => $this->name,
             'slug' => $this->parent ? $this->parent->slug . '-' . $this->name : $this->name,
             'parent_id' => $this->parent_id,
@@ -86,7 +86,7 @@ class Create extends AbstractBaseComponent
     public function render(): View
     {
         return view('shopper::livewire.categories.create', [
-            'categories' => (new CategoryRepository())
+            'categories' => (new CategoryRepository)
                 ->makeModel()
                 ->scopes('enabled')
                 ->tree()

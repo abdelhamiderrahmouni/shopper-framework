@@ -9,9 +9,7 @@ use Shopper\Framework\Sidebar\AdminSidebar;
 
 class SidebarCreator
 {
-    public function __construct(protected AdminSidebar $sidebar, protected SidebarRenderer $renderer)
-    {
-    }
+    public function __construct(protected AdminSidebar $sidebar, protected SidebarRenderer $renderer) {}
 
     public function create($view): void
     {

@@ -38,7 +38,7 @@ class Variant extends Component
 
     public function mount($product, $variant, string $currency): void
     {
-        $this->inventories = (new InventoryRepository())->get(['name', 'id']);
+        $this->inventories = (new InventoryRepository)->get(['name', 'id']);
         $this->product = $product;
         $this->variant = $variant;
         $this->name = $variant->name;

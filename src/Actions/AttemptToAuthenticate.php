@@ -13,9 +13,7 @@ use Shopper\Framework\Shopper;
 
 final class AttemptToAuthenticate
 {
-    public function __construct(protected StatefulGuard $guard, protected LoginRateLimiter $limiter)
-    {
-    }
+    public function __construct(protected StatefulGuard $guard, protected LoginRateLimiter $limiter) {}
 
     public function handle(Request $request, Closure $next)
     {

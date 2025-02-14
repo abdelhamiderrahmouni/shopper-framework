@@ -48,7 +48,7 @@ class Profile extends Component
                 'required',
                 'email',
                 Rule::unique(shopper_table('users'), 'email')->ignore(auth()->id()),
-                new RealEmailValidator(),
+                new RealEmailValidator,
             ],
             'first_name' => 'required',
             'last_name' => 'required',

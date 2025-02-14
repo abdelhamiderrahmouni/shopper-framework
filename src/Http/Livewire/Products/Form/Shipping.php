@@ -37,7 +37,7 @@ class Shipping extends Component
 
     public function store(): void
     {
-        (new ProductRepository())->getById($this->productId)->update([
+        (new ProductRepository)->getById($this->productId)->update([
             'requires_shipping' => $this->requiresShipping,
             'backorder' => $this->backorder,
             'weight_value' => $this->weightValue ?? null,

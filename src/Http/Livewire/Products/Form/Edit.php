@@ -73,7 +73,8 @@ class Edit extends AbstractBaseComponent
         $this->description = $value;
     }
 
-    public function getImages(){
+    public function getImages()
+    {
         $this->images = $this->product->getMedia(config('shopper.system.storage.disks.uploads'))->sortBy('order_column');
     }
 
@@ -134,19 +135,19 @@ class Edit extends AbstractBaseComponent
     public function render(): View
     {
         return view('shopper::livewire.products.forms.form-edit', [
-            'brands' => (new BrandRepository())
+            'brands' => (new BrandRepository)
                 ->makeModel()
                 ->scopes('enabled')
                 ->select('name', 'id')
                 ->get(),
-            'categories' => (new CategoryRepository())
+            'categories' => (new CategoryRepository)
                 ->makeModel()
                 ->scopes('enabled')
                 ->tree()
                 ->orderBy('name')
                 ->get()
                 ->toTree(),
-            'collections' => (new CollectionRepository())->get(['name', 'id']),
+            'collections' => (new CollectionRepository)->get(['name', 'id']),
         ]);
     }
 }

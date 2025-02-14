@@ -13,9 +13,7 @@ class AdminSidebar implements ShouldCache, Sidebar
 {
     use CacheableTrait;
 
-    public function __construct(protected Menu $menu)
-    {
-    }
+    public function __construct(protected Menu $menu) {}
 
     public function build(): void
     {

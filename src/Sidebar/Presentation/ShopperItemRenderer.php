@@ -12,9 +12,7 @@ class ShopperItemRenderer
 {
     protected string $view = 'shopper::sidebar.item';
 
-    public function __construct(protected Factory $factory)
-    {
-    }
+    public function __construct(protected Factory $factory) {}
 
     /**
      * @return \Illuminate\Contracts\View\View|void
@@ -42,7 +40,7 @@ class ShopperItemRenderer
                 'items' => $items,
                 'badges' => $badges,
                 'appends' => $appends,
-                'active' => (new ActiveStateChecker())->isActive($item),
+                'active' => (new ActiveStateChecker)->isActive($item),
             ])->render();
         }
     }

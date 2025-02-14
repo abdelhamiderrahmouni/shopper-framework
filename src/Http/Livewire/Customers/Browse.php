@@ -14,7 +14,7 @@ class Browse extends Component
     public function render(): View
     {
         return view('shopper::livewire.customers.browse', [
-            'total' => (new UserRepository())
+            'total' => (new UserRepository)
                 ->makeModel()
                 ->whereHas('roles', function (Builder $query) {
                     $query->where('name', config('shopper.system.users.default_role'));

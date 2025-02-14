@@ -17,7 +17,7 @@ class UsersRole extends Component
 
     public function removeUser(int $id): void
     {
-        (new UserRepository())->getById($id)?->delete();
+        (new UserRepository)->getById($id)?->delete();
 
         $this->dispatchBrowserEvent('user-removed');
 
@@ -30,7 +30,7 @@ class UsersRole extends Component
 
     public function render(): View
     {
-        $users = (new UserRepository())
+        $users = (new UserRepository)
             ->makeModel()
             ->whereHas('roles', function (Builder $query) {
                 $query->where('name', $this->role->name);

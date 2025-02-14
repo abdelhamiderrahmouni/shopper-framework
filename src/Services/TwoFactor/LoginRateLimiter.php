@@ -11,9 +11,7 @@ use Shopper\Framework\Shopper;
 
 class LoginRateLimiter
 {
-    public function __construct(protected RateLimiter $limiter)
-    {
-    }
+    public function __construct(protected RateLimiter $limiter) {}
 
     public function tooManyAttempts(Request $request): bool
     {

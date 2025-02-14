@@ -11,9 +11,7 @@ class ShopperBadgeRenderer
 {
     protected string $view = 'shopper::sidebar.badge';
 
-    public function __construct(protected Factory $factory)
-    {
-    }
+    public function __construct(protected Factory $factory) {}
 
     /**
      * @return \Illuminate\Contracts\View\View|void

@@ -16,7 +16,7 @@ trait HasPrice
     {
         $price *= 100; // the amount is already devided by 100 in the model
         $money = new Money($price, new Currency(shopper_currency()));
-        $currencies = new ISOCurrencies();
+        $currencies = new ISOCurrencies;
 
         $numberFormatter = new NumberFormatter(app()->getLocale(), NumberFormatter::CURRENCY);
         $moneyFormatter = new IntlMoneyFormatter($numberFormatter, $currencies);

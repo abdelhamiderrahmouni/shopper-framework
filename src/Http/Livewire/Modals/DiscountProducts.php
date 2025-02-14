@@ -38,7 +38,7 @@ class DiscountProducts extends ModalComponent
     public function render(): View
     {
         return view('shopper::livewire.modals.discount-products', [
-            'products' => (new ProductRepository())
+            'products' => (new ProductRepository)
                 ->where('name', '%' . $this->search . '%', 'like')
                 ->get(['name', 'price_amount', 'id'])
                 ->except($this->excludesIds),

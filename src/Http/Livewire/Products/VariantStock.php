@@ -34,17 +34,17 @@ class VariantStock extends Component
     public function render(): View
     {
         return view('shopper::livewire.products.variant-stock', [
-            'currentStock' => (new InventoryHistoryRepository())
+            'currentStock' => (new InventoryHistoryRepository)
                 ->where('inventory_id', $this->inventory)
                 ->where('stockable_id', $this->product->id)
                 ->get()
                 ->sum('quantity'),
-            'histories' => (new InventoryHistoryRepository())
+            'histories' => (new InventoryHistoryRepository)
                 ->where('inventory_id', $this->inventory)
                 ->where('stockable_id', $this->product->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(3),
-            'inventories' => (new InventoryRepository())->all(),
+            'inventories' => (new InventoryRepository)->all(),
         ]);
     }
 }

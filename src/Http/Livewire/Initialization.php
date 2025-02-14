@@ -171,7 +171,7 @@ class Initialization extends Component
 
     public function storeHasSetup(): void
     {
-        (new InventoryRepository())->create([
+        (new InventoryRepository)->create([
             'name' => $this->shop_name,
             'code' => str_slug($this->shop_name),
             'email' => $this->shop_email,
@@ -185,7 +185,7 @@ class Initialization extends Component
             'is_default' => true,
         ]);
 
-        (new ChannelRepository())->create([
+        (new ChannelRepository)->create([
             'name' => $name = __('Web Store'),
             'slug' => $name,
             'url' => config('app.url'),

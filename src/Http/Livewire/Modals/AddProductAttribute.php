@@ -45,7 +45,7 @@ class AddProductAttribute extends ModalComponent
 
     public function mount(int $productId): void
     {
-        $this->product = (new ProductRepository())->getById($productId);
+        $this->product = (new ProductRepository)->getById($productId);
         $this->productAttributes = $this->getProductAttributes();
         $this->attributes = $this->getAttributes();
     }

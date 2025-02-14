@@ -29,7 +29,7 @@ class BrandController extends ShopperBaseController
         $this->authorize('edit_brands');
 
         return view('shopper::pages.brands.edit', [
-            'brand' => (new BrandRepository())->getById($id),
+            'brand' => (new BrandRepository)->getById($id),
         ]);
     }
 }

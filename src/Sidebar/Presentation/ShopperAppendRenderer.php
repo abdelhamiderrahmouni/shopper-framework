@@ -11,9 +11,7 @@ class ShopperAppendRenderer
 {
     protected string $view = 'shopper::sidebar.append';
 
-    public function __construct(protected Factory $factory)
-    {
-    }
+    public function __construct(protected Factory $factory) {}
 
     /**
      * @return \Illuminate\Contracts\View\View|void

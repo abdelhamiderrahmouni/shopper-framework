@@ -48,7 +48,7 @@ class Show extends AbstractBaseComponent
     {
         $this->validate($this->rules());
 
-        (new UserRepository())->getById($this->customer->id)->update([
+        (new UserRepository)->getById($this->customer->id)->update([
             'email' => $this->email,
             'last_name' => $this->last_name,
             'first_name' => $this->first_name,
